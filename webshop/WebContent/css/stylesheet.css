@@ -4,6 +4,7 @@ header {
 
 header input {
 	text-align: center;
+	min-width: 40em;
 }
 
 nav {

@@ -13,14 +13,7 @@
 
 	<header>
 		<!-- onfocus und onblur aus dem Internet: http://jsfiddle.net/SRYLg/  -->
-		<h1 align="center">
-			Titel der Webseite hier
-			<!-- &nbsp; &nbsp; &nbsp; <input
-				onfocus="if(this.value==this.defaultValue)this.value='';"
-				onblur="if(this.value=='')this.value=this.defaultValue;"
-				name="suche" type="text" size="70" maxlength="30"> 
-				<input type="button" name="suchen" placeholder="Geben Sie hier Ihren Suchbegriff ein" value="Suchen">-->
-		</h1>
+		<h1 align="center">Titel der Webseite hier</h1>
 
 		<p style="text-align: center">
 			<input type="text" name="suchfeld" size="30" maxlength="50"
@@ -28,14 +21,18 @@
 		</p>
 
 		<nav>
-			<a href="#">Startseite</a> <a href="#">Fernseher</a> <a href="#">Kameras</a>
+			<a href="../index.html">Startseite</a> <a
+				href="html/kategorieFernseher.html">Fernseher</a> <a
+				href="html/kategorieKamera.html">Kameras</a> <a
+				href="html/kategorieSmartphones.html">Smartphones</a> <a
+				href="html/kategorieNotebooks.html">Notebooks</a><br>
 
 		</nav>
 	</header>
 
 
 	<!--<nav>
-		<a href="#">Startseite</a> <a href="#">Über uns</a> <a href="#">Impressum</a>
+		
 	</nav>-->
 
 	<h1>Tagesaktuelle Angebote</h1>
@@ -43,9 +40,14 @@
 		<!-- Tabelle 3x3 -->
 		<thead>
 			<tr>
-				<th>Im Bereich Fernseher</th>
-				<th>Im Bereich Notebooks</th>
-				<th>Im Bereich Smartphones</th>
+				<th><a href="html/kategorieFernseher.html">Bereich
+						Fernseher</a></th>
+
+				<th><a href="html/kategorieNotebooks.html">Im Bereich
+						Notebooks</a></th>
+				<th><a href="html/kategorieSmartphones.html">Im Bereich
+						Smartphones</a></th>
+				<th><a href="html/kategorieKamera.html">Im Bereich Kameras</a></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -61,7 +63,8 @@
 	</table>
 
 	<footer>
-		<a href="Kontaktformular.html">Kontakt</a>
+		<a href="Kontaktformular.html">Kontakt</a> <a href="#">Über uns</a> <a
+			href="#">Impressum</a>
 	</footer>
 
 
