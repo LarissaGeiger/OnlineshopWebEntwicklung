@@ -1,0 +1,38 @@
+header {
+	background-color: lightblue;
+}
+
+header input {
+	text-align: center;
+}
+
+nav {
+	text-align: center;
+	background-color: lightcoral;
+}
+
+/*#spalte1 {
+	min-width: 18em;
+	max-width: 18em;
+	background-color: lightgrey;
+}
+
+
+#spalte2 {
+	background-color: blue;
+	min-width: 31em;
+	text-align: center;
+}
+
+#spalte3 {
+	background-color: gold;
+	min-width: 31em;
+	text-align: center;
+}
+
+*/
+
+
+footer {
+	background-color: lightblue;
+}
