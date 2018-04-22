@@ -1,0 +1,69 @@
+html {
+	background-color: lightblue;
+}
+
+nav {
+	text-align: center;
+	background-color: lightblue;
+}
+
+/* Style the top navigation bar */
+
+body {
+	margin: 10px auto;
+	min-width: 16em;
+	font-family: sans-serif;
+	color: #333333;
+}
+
+
+
+main {
+	display: block;
+	background: #c4ced3;
+	border-color: #8a9da8;
+	min-width: 16em;
+	/* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+}
+
+section {
+	background: #F1F3F4;
+	border-color: slateblue;
+}
+
+article {
+	background: #ffede0;
+	border-color: #df6c20;
+}
+
+aside {
+	background: #ebf5d7;
+	border-color: #8db243;
+}
+
+footer {
+	background-color: lightcoral;
+}
+
+footer p {
+	float: right;
+	margin: 0;
+}
+
+@media ( min-width : 32em) {
+	/* zweispaltiges Layout für mittlere Viewports */
+
+	nav {
+		float: left;
+		width: 15em;
+	}
+	main {
+		min-width: 20em;
+		margin-left: 15em;
+	}
+	aside {
+		float: left;
+		width: 12em;
+	}
+}
+}
