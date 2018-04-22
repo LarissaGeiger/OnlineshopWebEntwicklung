@@ -1,5 +1,9 @@
+html {
+	background-color: lightgrey;
+}
+
 header {
-	background-color: lightblue;
+	background-color: lightgrey;
 }
 
 header input {
