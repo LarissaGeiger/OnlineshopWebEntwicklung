@@ -1,22 +1,72 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <meta charset="UTF-8"> 
-    <title> Kontaktformular </title> 
-   <link rel="stylesheet" href="Kontaktformularcss.css">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kontaktformular</title>
+<link rel="stylesheet" href="../css/stylesheet.css">
 </head>
 
-<body> 
-    <h1>Kontaktformular</h1>
-    <form action="input_text.html">
-       <p>Geschlecht:<br><select name="geschlecht"><option>Männlich</option><option>Weiblich</option></select></p>
-        <p>E-Mail:<br><input name="email" type="text" size="30" maxlength="30" value=""></p>
-        <p>Vorname:<br><input name="vorname" type="text" size="30" maxlength="40" value=""></p>
-        <p>Nachname:<br><input name="nachname" type="text" size="30" maxlength="40" value=""></p>
-        <p>Bestellnummer:<br><input  onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" name="Bestellnummer" type="text" size="30" maxlength="6" value="falls vorhanden bitte eintragen!"></p>
-        <p>Ihre Nachricht an uns:<br><textarea name="user_eingabe" cols="50" rows="10"></textarea></p>
-        <input type="button" name="Text 1" value="Absenden">
-    </form>
+<body>
+	<header>
+		<!-- onfocus und onblur aus dem Internet: http://jsfiddle.net/SRYLg/  -->
+		<h1 align="center">Titel der Webseite hier</h1>
+
+		<p style="text-align: center">
+			<input type="text" name="suchfeld" size="30" maxlength="50"
+				placeholder="Geben Sie hier Ihren Suchbegriff ein">
+		</p>
+
+		<nav>
+			<a href="../index.html">Startseite</a> <a
+				href="kategorieFernseher.html">Fernseher</a> <a
+				href="kategorieKamera.html">Kameras</a> <a
+				href="kategorieSmartphones.html">Smartphones</a> <a
+				href="kategorieNotebooks.html">Notebooks</a><br>
+
+		</nav>
+	</header>
+
+	<h1>Kontaktformular</h1>
+
+
+	<form action="input_text.html">
+		<p>
+			Geschlecht:<br>
+			<select name="geschlecht"><option>Männlich</option>
+				<option>Weiblich</option></select>
+		</p>
+		<p>
+			E-Mail:<br>
+			<input name="email" type="text" size="30" maxlength="30" value="">
+		</p>
+		<p>
+			Vorname:<br>
+			<input name="vorname" type="text" size="30" maxlength="40" value="">
+		</p>
+		<p>
+			Nachname:<br>
+			<input name="nachname" type="text" size="30" maxlength="40" value="">
+		</p>
+		<p>
+			Bestellnummer:<br>
+			<input onfocus="if(this.value==this.defaultValue)this.value='';"
+				onblur="if(this.value=='')this.value=this.defaultValue;"
+				name="Bestellnummer" type="text" size="30" maxlength="6"
+				value="falls vorhanden bitte eintragen!">
+		</p>
+		<p>
+			Ihre Nachricht an uns:<br>
+			<textarea name="user_eingabe" cols="50" rows="10"></textarea>
+		</p>
+		<input type="button" name="Text 1" value="Absenden">
+	</form>
+
+
+	<footer>
+		<a href="Kontaktformular.html">Kontakt</a> <a href="ueberUns.html">Über
+			uns</a> <a href="impressum.html">Impressum</a>
+
+	</footer>
 </body>
 </html>
 
