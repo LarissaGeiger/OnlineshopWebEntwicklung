@@ -6,14 +6,64 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
+<!-- 
+
+- Kategorie Fernseher
+	- Samsung Fernseher
+		- Samsung TV
+		- Samsung TV2
+	- Panasonic Fernseher
+		- Panasonic TV
+	- LG Fernseher
+		- LG TV
+- Kategorie Notebooks
+	- lenovo
+		- Lenovo V
+		- Lenovo Yoga
+	- HP
+		- HP Pavilion
+		- HP Envy
+	- Apple
+		- MacBook
+		- MacBook Air
+- Kategorie Smartphones
+	- Iphone
+		- iphone 5
+		- iphone 6
+		- iphone X
+	- Samsung Smartphones
+		- galaxy 3
+		- galaxy 6
+- Kategorie Kamera
+	- Spiegelreflex Kamera
+		- canonSpiegel
+		- nikonSpiegel
+		- nikonRetroSpiegel
+	- Digital Kamera
+		- sonyDigital
+		- samsungDigital
+		- panasonicDigital
+
+
+- überall <article>-tags entfernt wegen Validierung 
+
+- alle konkreten Produktseiten mit <aside>-Tag aufgebaut und stylesheet.css, 
+alle anderen Seiten mit <nav>-tag und fernseher.css!
+
+ -->
+
+
+
+
 
 
 <body>
 
-
 	<header>
 		<!-- onfocus und onblur aus dem Internet: http://jsfiddle.net/SRYLg/  -->
-		<h1 align="center">Titel der Webseite hier</h1>
+
+		<!--überall    align="center"  bei h1 entfernt wegen Validierung-->
+		<h1>Titel der Webseite hier</h1>
 
 		<p style="text-align: center">
 			<input type="text" name="suchfeld" size="30" maxlength="50"
@@ -31,18 +81,13 @@
 	</header>
 
 
-	<!--<nav>
-		
-	</nav>-->
-
 	<h1>Tagesaktuelle Angebote</h1>
 	<table>
-		<!-- Tabelle 3x3 -->
+		<!-- Tabelle 4x2 -->
 		<thead>
 			<tr>
 				<th><a href="html/kategorieFernseher.html"> Im Bereich
 						Fernseher</a></th>
-
 				<th><a href="html/kategorieNotebooks.html">Im Bereich
 						Notebooks</a></th>
 				<th><a href="html/kategorieSmartphones.html">Im Bereich
@@ -58,6 +103,8 @@
 					alt="Notebook"></td>
 				<td><img src="img/smartphone.jpg" width="213" height="162"
 					alt="Smartphone"></td>
+				<td><img src="img/kameras.jpg" width="213" height="162"
+					alt="Kameras"></td>
 			</tr>
 		</tbody>
 	</table>
@@ -69,12 +116,6 @@
 	</footer>
 
 
-
-
-
 </body>
-
-
-
 
 </html>
