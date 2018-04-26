@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title> Kontaktformular </title> 
+   <link rel="stylesheet" href="Kontaktformularcss.css">
+
+
+</head>
+
+<body> 
+    <h1>Kontaktformular</h1>
+    <form method="get" action="../kontaktformularservlet">
+    <div>
+       <p>Geschlecht:<br><select name="geschlecht" id="geschlecht" ><option>Männlich</option><option>Weiblich</option></select></p>
+       </div>
+       
+       <div>
+        <p>E-Mail:<br><input name="email" id="email" type="text" size="30" maxlength="30" value="" required></p>
+        </div>
+        
+        <div>
+        <p>Vorname:<br><input name="vorname" id="vorname" type="text" size="30" maxlength="40" value="" required></p>
+        </div>
+        
+        <div>
+        <p>Nachname:<br><input name="nachname" id="nachname" type="text" size="30" maxlength="40" value="" required></p>
+        </div>
+        
+        <div>
+        <p>Ihre Nachricht an uns:<br><textarea name="usereingabe" id="usereingabe" cols="50" rows="10" required></textarea></p>
+        </div>
+        
+        <div>
+        <button type="submit" name="action" value="formdata">Senden</button>
+        </div>
+        
+    </form>
+</body>
+</html>
+
+
+
