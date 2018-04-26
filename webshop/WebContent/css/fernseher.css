@@ -1,8 +1,11 @@
 html {
-	background-color: lightgrey;
+	background-color: lightblue;
 }
 
-
+nav {
+	text-align: center;
+	background-color: #ffff80;
+}
 
 /* Style the top navigation bar */
 
@@ -23,10 +26,6 @@ main {
 	/* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
 }
 
-section {
-	background: #F1F3F4;
-	border-color: slateblue;
-}
 
 article {
 	background: #ffede0;
@@ -34,13 +33,16 @@ article {
 }
 
 aside {
-	background: #ebf5d7;
-	border-color: #8db243;
+	background-color: lightblue;
+	text-align: left; 
+	
+	width: 20%;
+	float: left;
+	min-height: 10em;
 }
 
 footer {
-	background: #e4ebf2;
-	border-color: #8a9da8;
+	background-color: lightcoral;
 }
 
 footer p {
@@ -48,8 +50,8 @@ footer p {
 	margin: 0;
 }
 
-@media ( min-width : 32em) {
-	/* zweispaltiges Layout für mittlere Viewports */
+/* @media ( min-width : 32em) {
+	zweispaltiges Layout für mittlere Viewports
 
 	nav {
 		float: left;
@@ -63,5 +65,5 @@ footer p {
 		float: left;
 		width: 12em;
 	}
-}
+} */
 }

@@ -32,8 +32,20 @@ nav {
 }
 
 */
+aside {
+	background-color: lightblue;
+	text-align: left; 
+	
+	width: 20%;
+	float: left;
+	min-height: 20em;
+}
 
+article {
+	background: #ffede0;
+	border-color: #df6c20;
+}
 
 footer {
-	background-color: lightblue;
+	background-color: lightcoral;
 }
