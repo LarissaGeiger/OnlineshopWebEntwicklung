@@ -1,4 +1,5 @@
 //package onlineshop;
+//
 //import java.io.IOException;
 //import java.io.PrintWriter;
 //
@@ -8,25 +9,24 @@
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 //
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
+//
 ///**
-// * Servlet implementation class SessionHandlingServlet
+// * Servlet implementation class kontaktformularservlet
 // */
-//@WebServlet("/registrierungServlet")
-//public class registrierungServlet extends HttpServlet {
+//@WebServlet("/kontaktformularservlet")
+//public class kontaktformularservlet extends HttpServlet {
 //	private static final long serialVersionUID = 1L;
-//
-//	@Override
-//	public void init() throws ServletException {
-//		super.init();
-//		log("init() in FirstServlet reached");
+//    
+//	//Datum aus dem Internet
+//	public kontaktformularservlet() {
+//		super();
 //	}
-//
-//	
-//	
-//	
-//	/**
-//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-//	 */
+//	// Datum aus dem Internet
+//    /**
+//     * @see HttpServlet#HttpServlet()
+//     */
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		// HTTP-Header setzen
 //		response.setStatus(HttpServletResponse.SC_OK);	// nicht zwingend erforderlich; ist der default-Wert
@@ -41,25 +41,34 @@
 //		// <parameter-encoding default-charset="UTF-8" />
 //		
 //		final PrintWriter out = response.getWriter();
+//		
+//		// Datum aus dem Internet
+//		Date dNow = new Date( );
+//		SimpleDateFormat ft = 
+//				new SimpleDateFormat ("yyyy.MM.dd  hh:mm:ss E  ");
+//		// Datum aus dem Internet 
+//		
+//		
+//		String geschlecht = request.getParameter("geschlecht");
+//		String email = request.getParameter("email");
 //		String vorname = request.getParameter("vorname");
 //		String nachname = request.getParameter("nachname");
-//		String geburtsdatum = request.getParameter("geburtstag");
-//		String email = request.getParameter("email");
-//		String password = request.getParameter("password");
-//		
+//		String usereingabe = request.getParameter("usereingabe");
 //		out.println("<!DOCTYPE html>");
 //		out.println("<html>");
 //		out.println("<body>");
 //		out.println("<h3>Empfangene Formulardaten</h3>");
+//		out.println("Geschlecht: " + geschlecht + "<br>");
+//		out.println("E-Mail: " + email + "<br>");
 //		out.println("Vorname: " + vorname + "<br>");
 //		out.println("Nachname: " + nachname + "<br>");
-//		out.println("Geburtsdatum: " + geburtsdatum + "<br>");
-//		out.println("E-Mail: " + email + "<br>");
-//		out.println("Password: " + password + "<br>");
-//
+//		out.println("Nachricht: " + usereingabe + "<br>");
+//		out.println("Uhrzeit: " + ft.format(dNow) + "<br>"); // Datum ausgabe
+//		
 //		out.println("</body>");
 //		out.println("</html>");
 //	}
+//	
 //
 //	/**
 //	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -70,7 +79,6 @@
 //	}
 //
 //}
-//
 
 package onlineshop;
 
@@ -84,19 +92,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import onlineshop.kundeBean;
+import onlineshop.kontaktBean;
 
 /**
  * Servlet implementation class ProduktformcServlet
  */
-@WebServlet("/registrierungServlet")
-public class registrierungServlet extends HttpServlet {
+@WebServlet("/kontaktformularServlet")
+public class kontaktformularServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Resource(lookup="jdbc/MyTHIPool")
-	 	
-	
-	
+	@Resource(lookup = "jdbc/MyTHIPool")
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -113,18 +118,18 @@ public class registrierungServlet extends HttpServlet {
 												// stellt werden. Eine neue Zeile in die Datei glassfish-web.xml
 												// ergänzen (zu finden im WEB-INF-Ordner des Projektes):
 												// <parameter-encoding default-charset="UTF-8" />
-		kundeBean kunde = new kundeBean();
-		kunde.setVorname(request.getParameter("vorname"));
-		kunde.setNachname(request.getParameter("nachname"));
-		kunde.setEmail(request.getParameter("email"));
-		kunde.setPasswort(request.getParameter("passwort"));
-		kunde.setGeburtsdatum(request.getParameter("geburtsdatum"));
+		kontaktBean kontakt = new kontaktBean();
+		kontakt.setGeschlecht(request.getParameter("geschlecht"));
+		kontakt.setVorname(request.getParameter("vorname"));
+		kontakt.setNachname(request.getParameter("nachname"));
+		kontakt.setEmail(request.getParameter("email"));
+		kontakt.setUsereingabe(request.getParameter("usereingabe"));
 
 		// Scope "Request"
-		request.setAttribute("myKunde", kunde);
+		request.setAttribute("myKontakt", kontakt);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/registrierung.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/kontaktformular.jsp");
 		dispatcher.forward(request, response);
 	}
 
