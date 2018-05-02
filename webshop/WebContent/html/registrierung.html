@@ -3,22 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrierung</title>
+<link rel="stylesheet" href="../css/kontaktformular.css">
+
 </head>
 <body>
 
-<h1>Registrierung</h1>
-<form method="post" action="../registrierungServlet">
+	<h1>Registrierung</h1>
+	<form method="post" action="../registrierungServlet">
 
-<p>Vorname:<br><input name="vorname" type="text" size="50" maxlength="50" placeholder="Bitte geben Sie hier ihren Vornamen ein" required></p>
-<p>Nachname:<br><input name="nachname" type="text" size="50" maxlength="50" placeholder="Bitte geben Sie hier ihren Nachnamen ein" required></p>
-<p>Geburtsdatum:<br><input name="geburtsdatum" type="date" size="50" maxlength="50" placeholder="Bitte geben Sie hier ihr Geburtsdatum ein" required></p>
-<p>E-Mail:<br><input name="email" type="tel" size="50" maxlength="50" placeholder="Bitte geben Sie hier ihre E-Mail Adresse ein" required></p>
-<p>Passwort:<br><input name="passwort" type="password" size="50" min="13" placeholder="Bitte geben Sie hier ihr Passwort ein" required></p>
-<p>Passwort wiederholen:<br><input name="passwort" type="password" size="50" min="13" placeholder="Bitte wiederholen Sie ihr Passwort" required></p>
-<button type="submit" > Registrieren</button></form>
+		<p>
+			Vorname:<br> <input name="vorname" type="text" size="50"
+				maxlength="50" placeholder="Bitte geben Sie hier ihren Vornamen ein"
+				required><label for="vorname">*</label>
+		</p>
+		<p>
+			Nachname:<br> <input name="nachname" type="text" size="50"
+				maxlength="50"
+				placeholder="Bitte geben Sie hier ihren Nachnamen ein" required><label
+				for="nachname">*</label>
+		</p>
+		<p>
+			Geburtsdatum:<br> <input name="geburtsdatum" type="date"
+				size="50" placeholder="Bitte geben Sie hier ihr Geburtsdatum ein"
+				required
+				pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$"><label
+				for="geburtsdatum">*</label>
+			<!-- Formathinweis fehlt -->
+		</p>
+		<p>
+			E-Mail:<br> <input name="email" type="email" size="50"
+				maxlength="50"
+				placeholder="Bitte geben Sie hier ihre E-Mail Adresse ein" required><label
+				for="email">*</label>
+		</p>
+		<p>
+			Passwort:<br> <input name="passwort" type="password" size="50"
+				min="13" maxlength="20"
+				placeholder="Bitte geben Sie hier ihr Passwort ein" required><label
+				for="passwort">*</label>
+
+		</p>
+		<p>
+			Passwort wiederholen:<br> <input name="passwort2"
+				type="password" size="50" min="13" maxlength="20"
+				placeholder="Bitte wiederholen Sie ihr Passwort" required><label
+				for="passwort2">*</label>
+
+			<!-- 	Testen, ob das Passwort das gleiche wie zuvor ist, fehlt -->
+		</p>
+
+		<p>(*) = Eingabe erforderlich</p>
+		<button type="submit" id="button">Registrieren</button>
+	</form>
 
 
-</form>
+
 
 </body>
 </html>
