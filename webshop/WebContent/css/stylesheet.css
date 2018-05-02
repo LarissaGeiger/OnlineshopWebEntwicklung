@@ -1,10 +1,6 @@
 header {
 	background-color: lightblue;
-}
-
-header input {
 	text-align: center;
-	min-width: 40em;
 }
 
 nav {
@@ -12,39 +8,18 @@ nav {
 	background-color: lightcoral;
 }
 
-/*#spalte1 {
-	min-width: 18em;
-	max-width: 18em;
+/* select {
 	background-color: lightgrey;
 }
+ */
+/* body {
+	background-color: snow;
+} */
 
+/* div {
+	background-color: snow;
+} */
 
-#spalte2 {
-	background-color: blue;
-	min-width: 31em;
-	text-align: center;
-}
-
-#spalte3 {
-	background-color: gold;
-	min-width: 31em;
-	text-align: center;
-}
-
-*/
-aside {
-	background-color: lightblue;
-	text-align: left; 
-	
-	width: 20%;
-	float: left;
-	min-height: 20em;
-}
-
-article {
-	background: #ffede0;
-	border-color: #df6c20;
-}
 
 footer {
 	background-color: lightcoral;
