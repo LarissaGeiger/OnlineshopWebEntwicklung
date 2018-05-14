@@ -8,15 +8,21 @@
 <body>
 	<h3>Empfangene Kundendaten</h3>
 	<br>
-	<em>Vorname: </em>${myKunde.vorname}
+	<!--<em>Id: </em>${myKunde.id}-->
 	<br>
-	<em>Nachname: </em>${myKunde.nachname}
+	<em>Vorname: </em>${myKunde.firstname}
 	<br>
-	<em>Geburtsdatum: </em>${myKunde.geburtsdatum}
+	<em>Nachname: </em>${myKunde.lastname}
+	<br>
+	<em>Geburtsdatum: </em>${myKunde.gebdate}
 	<br>
 	<em>E-mail: </em>${myKunde.email}
 	<br>
-	<em>Passwort: </em>${myKunde.passwort}
+	<em>Passwort: </em>${myKunde.password}
+	<br>
+	<em>Straße: </em>${myKunde.straße}
+	<br>
+	<em>telnr: </em>${myKunde.telefonnr}
 
 
 </body>

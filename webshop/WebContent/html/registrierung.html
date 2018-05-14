@@ -12,22 +12,22 @@
 	<form method="post" action="../registrierungServlet">
 
 		<p>
-			Vorname:<br> <input name="vorname" type="text" size="50"
+			Vorname:<br> <input name="firstname" type="text" size="50"
 				maxlength="50" placeholder="Bitte geben Sie hier ihren Vornamen ein"
-				required><label for="vorname">*</label>
+				required><label for="firstname">*</label>
 		</p>
 		<p>
-			Nachname:<br> <input name="nachname" type="text" size="50"
+			Nachname:<br> <input name="lastname" type="text" size="50"
 				maxlength="50"
 				placeholder="Bitte geben Sie hier ihren Nachnamen ein" required><label
-				for="nachname">*</label>
+				for="lastname">*</label>
 		</p>
 		<p>
-			Geburtsdatum:<br> <input name="geburtsdatum" type="date"
+			Geburtsdatum:<br> <input name="gebdate" type="date"
 				size="50" placeholder="Bitte geben Sie hier ihr Geburtsdatum ein"
 				required
 				pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$"><label
-				for="geburtsdatum">*</label>
+				for="gebdate">*</label>
 			<!-- Formathinweis fehlt -->
 		</p>
 		<p>
@@ -37,10 +37,26 @@
 				for="email">*</label>
 		</p>
 		<p>
-			Passwort:<br> <input name="passwort" type="password" size="50"
+			Passwort:<br> <input name="password" type="password" size="50"
 				min="13" maxlength="20"
 				placeholder="Bitte geben Sie hier ihr Passwort ein" required><label
-				for="passwort">*</label>
+				for="password">*</label>
+
+		</p>
+		
+				<p>
+			Straße:<br> <input name="straße" type="text" size="50"
+				min="13" maxlength="20"
+				placeholder="Bitte geben Sie hier ihr Passwort ein" required><label
+				for="straße">*</label>
+
+		</p>
+		
+				<p>
+			Telefonnummer:<br> <input name="telefonnr" type="tel" size="50"
+				 maxlength="20"
+				placeholder="Bitte geben Sie hier ihr Passwort ein" required><label
+				for="telefonnr">*</label>
 
 		</p>
 		<p>
