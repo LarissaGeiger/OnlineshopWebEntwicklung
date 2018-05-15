@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Anmeldung</title>
+<link rel="stylesheet" href="../css/kontaktformular.css">
+
+
+</head>
+<body>
+
+	<h1>Bitte anmelden</h1>
+	<form method="post" action="../AnmeldungServlet">
+
+
+		<p>
+			E-Mail:<br> <input name="email" type="email" size="50"
+				maxlength="50"
+				placeholder="Bitte geben Sie hier ihre E-Mail Adresse ein" required>
+		</p>
+		<p>
+			Passwort:<br> <input name="passwort" type="password" size="50"
+				min="13" maxlength="20"
+				placeholder="Bitte geben Sie hier ihr Passwort ein" required>
+
+		</p>
+
+		<p>
+			Noch kein Benutzerkonto vorhanden? Bitte registrieren Sie sich <a
+				href="registrierung.html">hier</a>
+		</p>
+
+		<button type="submit" id="anmelden">Anmelden</button>
+	</form>
+
+
+
+
+</body>
+</html>

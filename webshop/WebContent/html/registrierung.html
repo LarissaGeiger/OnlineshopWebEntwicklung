@@ -9,21 +9,21 @@
 <body>
 
 	<h1>Registrierung</h1>
-	<form method="post" action="../registrierungServlet">
+	<form method="post" action="../RegistrierungServlet">
 
 		<p>
-			Vorname:<br> <input name="firstname" type="text" size="50"
+			Vorname:<br> <input name="vorname" type="text" size="50"
 				maxlength="50" placeholder="Bitte geben Sie hier ihren Vornamen ein"
 				required><label for="firstname">*</label>
 		</p>
 		<p>
-			Nachname:<br> <input name="lastname" type="text" size="50"
+			Nachname:<br> <input name="nachname" type="text" size="50"
 				maxlength="50"
 				placeholder="Bitte geben Sie hier ihren Nachnamen ein" required><label
 				for="lastname">*</label>
 		</p>
 		<p>
-			Geburtsdatum:<br> <input name="gebdate" type="date"
+			Geburtsdatum:<br> <input name="gebdatum" type="date"
 				size="50" placeholder="Bitte geben Sie hier ihr Geburtsdatum ein"
 				required
 				pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$"><label
@@ -37,7 +37,7 @@
 				for="email">*</label>
 		</p>
 		<p>
-			Passwort:<br> <input name="password" type="password" size="50"
+			Passwort:<br> <input name="passwort" type="password" size="50"
 				min="13" maxlength="20"
 				placeholder="Bitte geben Sie hier ihr Passwort ein" required><label
 				for="password">*</label>
