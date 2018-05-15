@@ -1,0 +1,41 @@
+* {
+	box-sizing: border-box;
+	font-family: arial;
+}
+
+header {
+	background-color: lightblue;
+	text-align: center;
+	padding-top: 2px;}
+
+#uns{
+	text-align: left;
+}
+
+nav {
+	text-align: center;
+	background-color: lightcoral;
+ 	padding-top: 2px;
+ 	padding-bottom: 2px;
+	
+}
+
+body{
+	padding: 2px;
+}
+
+h2, h3 {
+	text-decoration: underline;
+	background-color: #ebebeb;
+}
+
+table {
+	text-align: center;
+	width: 100%;
+	padding: 2px;
+}
+
+
+footer {
+	background-color: lightcoral;
+}

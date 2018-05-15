@@ -1,41 +1,42 @@
+* {
+	box-sizing: border-box;
+	font-family: arial;
+}
 
 header {
 	text-align: center;
 	background-color: lightblue;
+	padding-top: 1em;
 }
 
 nav {
 	text-align: center;
 	background-color: lightcoral;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 aside {
-	background: #b0ffb0;
-	text-align: left;
-	width: 20%;
-	height: 30em; /* soll sich automatisch anpassen, muss geändert werden*/
-	float: left;
-	padding-top: 1em;
-	
+	background: lightyellow;
+	padding: 1em;
+	flex 1;
 }
 
-
-article {
-	background: #f7f2b7;
- 	height: 30em; /* soll sich automatisch anpassen, muss geändert werden*/
- 	width: 80%;
- 	float: right;
- 	 padding-top: 1em;
-	 
-	
+h2 {
+	text-decoration: underline;
+	background-color: #ebebeb;
+	font-size: 1.25em;
 }
 
-table{
-	text-align: center; /* sollte bei Produktbeschreibung nicht sein...*/
+main {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+article {flex 3;
+	padding: 1em;
 }
 
 footer {
 	background-color: lightcoral;
-	float: bottom;
-	
 }
