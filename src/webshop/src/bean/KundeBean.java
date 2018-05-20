@@ -1,19 +1,62 @@
 package bean;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class KundeBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	String vorname;
-	String nachname;
-	String email;
-	String gebdatum; // String??
-	String passwort;
-	Integer id;
-	String telefonnr;
-	String straﬂe;
+	private String vorname;
+	private String nachname;
+	private String email;
+	private String gebdatum; // String??
+	private String passwort;
+	private Integer id;
+	private String telefonnr;
+	public String getTelefonnr() {
+		return telefonnr;
+	}
+
+	public void setTelefonnr(String telefonnr) {
+		this.telefonnr = telefonnr;
+	}
+
+	private String straﬂe;
+	private Integer hausnr;
+	private Integer plz;
+	private String ort;
+	private boolean admin;
+
+	public Integer getHausnr() {
+		return hausnr;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public void setHausnr(Integer hausnr) {
+		this.hausnr = hausnr;
+	}
+
+	public Integer getPlz() {
+		return plz;
+	}
+
+	public void setPlz(Integer plz) {
+		this.plz = plz;
+	}
+
+	public String getOrt() {
+		return ort;
+	}
+
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
 
 	public String getVorname() {
 		return vorname;
@@ -63,13 +106,7 @@ public class KundeBean implements Serializable {
 		this.id = id;
 	}
 
-	public String getTelefonnr() {
-		return telefonnr;
-	}
 
-	public void setTelefonnr(String telefonnr) {
-		this.telefonnr = telefonnr;
-	}
 
 	public String getStraﬂe() {
 		return straﬂe;

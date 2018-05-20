@@ -10,6 +10,14 @@ public class KontaktBean implements Serializable{
 	private String email;
 	private String usereingabe;
 	private String geschlecht;
+	private Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getVorname() {
 		return vorname;
 	}
