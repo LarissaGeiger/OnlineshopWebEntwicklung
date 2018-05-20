@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Administrationsoberfläche</title>
+<link rel="stylesheet" href="startseite">
+
+</head>
+<body>
+
+
+	<form id="myBild" method="post" action="../BilderServlet"
+		enctype="multipart/form-data">
+
+		<fieldset>
+			<legend>Bild laden:</legend>
+			<div>
+				<input type="file" name="image" id="image" accept="image/*" required>
+			</div>
+			<div>
+				<input type="text" name="bez" id="bez" required>
+			</div>
+			<button name="submit" type="submit">Absenden</button>
+		</fieldset>
+	</form>
+</body>
+</html>

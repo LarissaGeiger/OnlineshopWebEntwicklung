@@ -3,34 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Anmeldung</title>
-<link rel="stylesheet" href="../css/kontaktformular.css">
+<link rel="stylesheet" href="../css/registrierung.css">
 
 
 </head>
 <body>
 
-	<h1>Bitte anmelden</h1>
+
 	<form method="post" action="../AnmeldungServlet">
+		<fieldset>
+			<legend>Bitte anmelden</legend>
+			<div>
+				<label>Email:</label><input name="email" type="email" maxlength="50"
+					placeholder="Bitte geben Sie hier ihre E-Mail Adresse ein" required><label
+					for="email"></label>
+			</div>
+			<div>
+				<label>Passwort:</label> <input name="passwort" type="password"
+					min="13" maxlength="20"
+					placeholder="Bitte geben Sie hier ihr Passwort ein" required><label
+					for="password"></label>
 
+			</div>
 
-		<p>
-			E-Mail:<br> <input name="email" type="email" size="50"
-				maxlength="50"
-				placeholder="Bitte geben Sie hier ihre E-Mail Adresse ein" required>
-		</p>
-		<p>
-			Passwort:<br> <input name="passwort" type="password" size="50"
-				min="13" maxlength="20"
-				placeholder="Bitte geben Sie hier ihr Passwort ein" required>
+			<p>
+				Noch kein Benutzerkonto vorhanden? Bitte registrieren Sie sich <a
+					href="registrierung.html">hier</a>
+			</p>
 
-		</p>
-
-		<p>
-			Noch kein Benutzerkonto vorhanden? Bitte registrieren Sie sich <a
-				href="registrierung.html">hier</a>
-		</p>
-
-		<button type="submit" id="anmelden">Anmelden</button>
+			<button type="submit" id="anmelden">Anmelden</button>
+		</fieldset>
 	</form>
 
 

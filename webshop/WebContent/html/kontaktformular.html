@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
+
 <meta charset="UTF-8">
 <title>Kontaktformular</title>
 <link rel="stylesheet" href="../css/kontaktformular.css">
@@ -11,50 +12,43 @@
 <body>
 
 
-	<h1>Kontaktformular</h1>
+
 	<form method="post" action="../KontaktformularServlet">
-		<div>
-			<p>
-				Geschlecht:<br> <select name="geschlecht" id="geschlecht"><option>Männlich</option>
-					<option>Weiblich</option></select>
-			</p>
-		</div>
+		<fieldset>
+			<legend>Kontaktformular</legend>
+			<div>
+				<label for="geschlecht"> Geschlecht:</label> <select
+					name="geschlecht" id="geschlecht"><option>Männlich</option>
+					<option>Weiblich</option>
+				</select>
 
-		<div>
-			<p>
-				E-Mail:<br> <input name="email" id="email" type="email"
-					size="30" maxlength="30" value="" required><label
-					for="email">*</label>
-			</p>
-		</div>
-
-		<div>
-			<p>
-				Vorname:<br> <input name="vorname" id="vorname" type="text"
-					size="30" maxlength="40" value="" required><label
-					for="vorname">*</label>
-			</p>
-		</div>
-
-		<div>
-			<p>
-				Nachname:<br> <input name="nachname" id="nachname" type="text"
-					size="30" maxlength="40" value="" required><label
-					for="nachname">*</label>
-			</p>
-		</div>
-
-		<div>
-			<p>
-				Ihre Nachricht an uns:<br>
-				<textarea name="usereingabe" id="usereingabe" cols="50" rows="10"></textarea>
-			</p>
-		</div>
-		<p>(*) = Eingabe erforderlich</p>
-		<div>
-			<button type="submit" name="action" value="formdata">Senden</button>
-		</div>
-
+			</div>
+			<div>
+				<label for="email"> E-Mail:</label> <input name="email" id="email"
+					type="email" maxlength="30" value="" required><label
+					for="email"></label><span></span>
+			</div>
+			<div>
+				<label for="vorname"> Vorname:</label> <input name="vorname"
+					id="vorname" type="text" maxlength="40" value="" required><label
+					for="vorname"></label><span></span>
+			</div>
+			<div>
+				<label for="nachname"> Nachname:</label> <input name="nachname"
+					id="nachname" type="text" maxlength="40" value="" required><label
+					for="nachname"></label><span></span>
+			</div>
+			<div>
+				<label for="usereingabe" id="eingabe"> Ihre Nachricht an
+					uns:</label>
+				<textarea name="usereingabe" id="usereingabe" rows="10" required></textarea>
+				<label for="usereingabe"></label> <span></span>
+			</div>
+			<p>(*) = Eingabe erforderlich</p>
+			<div>
+				<button type="submit" name="senden">Senden</button>
+			</div>
+		</fieldset>
 	</form>
 
 </body>
