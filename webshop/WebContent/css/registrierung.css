@@ -1,0 +1,65 @@
+html {
+	background: white;
+	font-family: arial, sans-serif;
+}
+
+fieldset {
+	width: 40em;
+	padding-top: 1.5em;
+	padding-left: 1.5em;
+	background: #80ff80;
+	border: 1px solid #000330;
+	border-radius: 5px;
+	margin: auto;
+}
+
+legend {
+	background: snow;
+	padding: 0.2em;
+	border: 1px solid #000330;
+	border-radius: 5px;
+	margin: auto;
+	text-decoration: underline;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+label {
+	display: inline-block;
+	min-width: 10em;
+}
+
+input {
+	width: 25em;
+	border: 1px solid #000330;
+}
+
+button {
+	width: 10em;
+}
+
+div {
+	padding: 0.2em;
+}
+
+button:hover {
+	background: silver;
+}
+
+input:hover {
+	background: #ffff80;
+	border: 1px solid #000330;
+}
+
+input:required {
+	content: "*";
+}
+
+.required {
+	color: red;
+}
+
+input[type='email']:valid+span::after {
+	color: black;
+	content: " ✓";
+}

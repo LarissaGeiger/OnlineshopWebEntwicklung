@@ -1,15 +1,82 @@
-
-html{
+html {
 	background: white;
+	font-family: arial, sans-serif;
 }
- 
-body {
-	  width: 30em;
-	  padding-left: 2px;
-	  background: peachpuff;
-	  border: 1px solid #000330; /*schwarze Umrandung */
-	  border-radius: 10px; /*rundet Ecken ab*/
- 	  margin: auto; /* zentriert Formular */
- }
- 
 
+form div {
+	padding: 0.2em;
+}
+
+input {
+	width: 30em;
+	border: 1px solid #000330;
+}
+
+label {
+	display: inline-block;
+	min-width: 10em;
+}
+
+textarea {
+	width: 30em;
+	border: 1px solid #000330;
+}
+
+#eingabe {
+	vertical-align: top;
+}
+
+button {
+	width: 10em;
+	margin-left: 12.5em;
+}
+
+p {
+	margin-left: 10.5em;
+}
+
+input[type='email']:valid+span::after {
+	color: black;
+	content: " ✓";
+}
+
+select {
+	width: 7em;
+}
+
+fieldset {
+	width: 40em;
+	padding: 2em;
+	background: palegreen;
+	border: 0.5px solid #000330;
+	border-radius: 8px;
+	margin: auto;
+}
+
+legend {
+	background: snow;
+	padding: 0.5em;
+	border: 0.5px solid #000330;
+	border-radius: 5px;
+	text-decoration: underline;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: auto;
+}
+
+button:hover {
+	background: silver;
+}
+
+input:hover, textarea:hover {
+	background: honeydew;
+}
+
+
+textarea:required+span::after {
+	content: "*";
+}
+
+:required {
+	content: "*";
+}
