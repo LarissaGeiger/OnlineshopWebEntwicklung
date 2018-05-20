@@ -3,13 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ergebnis Kategorie</title>
+<title>Kundendaten erfolgreich gelöscht</title>
 </head>
 <body>
-	<h3>Kategorie</h3>
-	<br>
-	<em>Kategorie: </em>${kategorie.kategorieName}
-	
+<h1>Kundendaten erfolgreich gelöscht</h1>
 
 
 </body>

@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ergebnis Registrierung</title>
+<title>Kundenaktualisierung</title>
 </head>
 <body>
-	<h3>Empfangene Kundendaten</h3>
+	<h3>Kundendaten erfolgreich aktualisiert:</h3>
 	<br>
-	
+	<em>Id: </em>${myKunde.id}
 	<br>
 	<em>Vorname: </em>${myKunde.vorname}
 	<br>
@@ -19,16 +19,18 @@
 	<em>E-mail: </em>${myKunde.email}
 	<br>
 	<em>Passwort: </em>${myKunde.passwort}
+	
+	<br>
+	<em>Telefonnummer: </em>${myKunde.telefonnr}
 	<br>
 	<em>Straße: </em>${myKunde.straße}
 	<br>
-	<em>telnr: </em>${myKunde.telefonnr}
+	<em>Hausnummer: </em>${myKunde.hausnr}
 	<br>
-	<em>ort: </em>${myKunde.ort}
+	<em>Postleitzahl: </em>${myKunde.plz}
 	<br>
-	<em>hausnr: </em>${myKunde.hausnr}
-	<br>
-	<em>plz: </em>${myKunde.plz}
+	<em>Ort: </em>${myKunde.ort}
+
 
 </body>
 </html>
