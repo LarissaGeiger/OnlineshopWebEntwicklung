@@ -37,12 +37,12 @@ public class KundenLoeschenServlet extends HttpServlet {
 		request.setAttribute("myKunde", id);
 		
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kunden.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundeLoeschen.jsp");
 		dispatcher.forward(request, response);	
 	}
 
 	private void delete(Integer id) throws ServletException {
-		// DB-Zugriff
+	
 		try (Connection con = ds.getConnection();
 			 PreparedStatement pstmt = con.prepareStatement("DELETE FROM customer WHERE id = ?")){
 			pstmt.setInt(1, id);

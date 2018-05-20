@@ -41,15 +41,16 @@ public class KundenSehenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8"); // In diesem Format erwartet das Servlet jetzt die Formulardaten
 
-		Integer id = Integer.valueOf(request.getParameter("id"));
+		request.setCharacterEncoding("UTF-8");
 
+		String nachname = request.getParameter("nachname");
+		// Integer id = Integer.valueOf(request.getParameter("id"));
+		List<KundeBean> kunden = read(nachname);
 		// DB-Zugriff
-		KundeBean k = read(id);
+
 		// Scope "Request"
-		request.setAttribute("myKunde", k);
+		request.setAttribute("myKunde", kunden);
 
 		// Weiterleiten an JSP
 		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kunden.jsp");
@@ -57,32 +58,50 @@ public class KundenSehenServlet extends HttpServlet {
 
 	}
 
-	private KundeBean read(Integer id) throws ServletException {
-		KundeBean kunde = new KundeBean();
-		kunde.setId(id);
-		
-		// DB-Zugriff
-		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM customer WHERE id=?")) {
+	private List<KundeBean> read(String nachname) throws ServletException {
+		List<KundeBean> kunden = new ArrayList<KundeBean>();
 
-			pstmt.setInt(1, id);
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM customer WHERE nachname LIKE ?")) {
+
+			pstmt.setString(1, nachname);
 			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs != null && rs.next()) {
-									
-					kunde.setVorname(rs.getString("vorname"));
-					kunde.setNachname(rs.getString("nachname"));
-					kunde.setEmail(rs.getString("email"));
-					kunde.setGebdatum(rs.getString("gebdatum"));
-					kunde.setTelefonnr(rs.getString("telefonnr"));
-					kunde.setStraﬂe(rs.getString("straﬂe"));
-					
+				while (rs.next()) {
+					KundeBean kunde = new KundeBean();
+
+					Integer id = Integer.valueOf((rs.getInt("id")));
+					kunde.setId(id);
+					String vorname = rs.getString("vorname");
+					kunde.setVorname(vorname);
+					String n = rs.getString("nachname");
+					kunde.setNachname(n);
+					String email = rs.getString("email");
+					kunde.setEmail(email);
+					String telefonnummer = rs.getString("telefonnr");
+					kunde.setTelefonnr(telefonnummer);
+					String straﬂe = rs.getString("straﬂe");
+					kunde.setStraﬂe(straﬂe);
+					String gebdatum = rs.getString("gebdatum");
+					kunde.setGebdatum(gebdatum);
+					String password = rs.getString("passwort");
+					kunde.setPasswort(password);
+					Boolean admin = rs.getBoolean("admin");
+					kunde.setAdmin(admin);
+					String ort = rs.getString("ort");
+					kunde.setOrt(ort);
+					Integer plz = rs.getInt("plz");
+					kunde.setPlz(plz);
+					Integer hausnr = rs.getInt("hausnr");
+					kunde.setHausnr(hausnr);
+					kunden.add(kunde);
 				}
+
 			}
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
 
-		return kunde;
+		return kunden;
 	}
 
 	/**

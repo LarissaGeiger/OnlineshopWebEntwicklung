@@ -18,7 +18,6 @@ import javax.sql.DataSource;
 
 import bean.KundeBean;
 
-
 @WebServlet("/RegistrierungServlet")
 public class RegistrierungServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,61 +31,60 @@ public class RegistrierungServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Servlet zur Entgegennahme von Formularinhalten und Generierung eines Beans
-		// zur Weitergabe
-		// der Formulardaten an eine JSP
-
-		request.setCharacterEncoding("UTF-8"); 
+		request.setCharacterEncoding("UTF-8");
 		KundeBean kunde = new KundeBean();
 		kunde.setVorname(request.getParameter("vorname"));
 		kunde.setNachname(request.getParameter("nachname"));
 		kunde.setEmail(request.getParameter("email"));
 		kunde.setPasswort(request.getParameter("passwort"));
-		kunde.setTelefonnr(request.getParameter("telefonnr"));
+		 kunde.setTelefonnr(request.getParameter("telefonnummer"));
 		kunde.setStraﬂe(request.getParameter("straﬂe"));
-		kunde.setGebdatum(request.getParameter("gebdatum"));
-
+		kunde.setGebdatum(request.getParameter("geburtsdatum"));
+		kunde.setHausnr(Integer.valueOf(request.getParameter("hausnummer")));
+		kunde.setPlz(Integer.valueOf(request.getParameter("postleitzahl")));
+		kunde.setOrt(request.getParameter("ort"));
 		persist(kunde);
 
-		// Scope "Request"
 		request.setAttribute("myKunde", kunde);
 
-		// Weiterleiten an JSP
 		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/registrierung.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void persist(KundeBean kunde) throws ServletException {
-		// String [] neuerKunde = new String[] {"id",
-		// "firstname","lastname","email","telefonnummer", "Straﬂe"};
-		String[] generatedKeys = new String[] {"id"};
+
+		String[] generatedKeys = new String[] { "id" };
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"INSERT INTO customer (vorname,nachname,email,telefonnr, straﬂe,gebdatum,passwort) VALUES (?,?,?,?,?,?,?)", generatedKeys)) {
+						"INSERT INTO customer (vorname,nachname,email, straﬂe, gebdatum,passwort, ort, admin, hausnr, plz, telefonnr) "
+								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+						generatedKeys)) {
+
 			pstmt.setString(1, kunde.getVorname());
 			pstmt.setString(2, kunde.getNachname());
 			pstmt.setString(3, kunde.getEmail());
-			pstmt.setString(4, kunde.getTelefonnr());
-			pstmt.setString(5, kunde.getStraﬂe());
-			pstmt.setString(6, kunde.getGebdatum());
-			pstmt.setString(7, kunde.getPasswort());
+
+			pstmt.setString(4, kunde.getStraﬂe());
+			pstmt.setString(5, kunde.getGebdatum());
+			pstmt.setString(6, kunde.getPasswort());
+
+			pstmt.setString(7, kunde.getOrt());
+			pstmt.setBoolean(8, false);
+			pstmt.setInt(9, kunde.getHausnr());
+			pstmt.setInt(10, kunde.getPlz());
+			pstmt.setString(11, kunde.getTelefonnr());
 			pstmt.executeUpdate();
 
-		
+			try (ResultSet rs = pstmt.getGeneratedKeys()) {
+				while (rs.next()) {
+					kunde.setId(rs.getInt(1));
+				}
 
-		
-		try (ResultSet rs = pstmt.getGeneratedKeys()) {
-			while (rs.next()) {
-				kunde.setId(rs.getInt(1));
 			}
-			
-		}
-		
-		}
-		catch (Exception e) {
+
+		} catch (Exception e) {
 			throw new ServletException(e.getMessage());
 		}
-		
 
 	}
 

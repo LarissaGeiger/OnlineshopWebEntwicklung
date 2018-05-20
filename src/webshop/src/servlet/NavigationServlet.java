@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import com.sun.xml.wss.saml.internal.saml11.jaxb10.Statement;
+
 
 /**
  * Servlet implementation class navigationServlet
  */
-@WebServlet("/navigationServlet")
+@WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,10 +25,10 @@ public class NavigationServlet extends HttpServlet {
 	@Resource(lookup="jdbc/MyTHIPool")
 	private DataSource ds;
 	
-	
-	try(Connection con = ds.getConnection();
-			
-		
+//	
+//	try(Connection con = ds.getConnection();
+//			
+//		
 	{
 		
 	}
