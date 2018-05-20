@@ -7,14 +7,14 @@
 
 </head>
 <body>
-
-	<form method="post" action="../../KategorieServlet">
+ <!-- dynamisch, aber in Datenbank mit festen Attributwerten wie "BildId" "katID" "id" "preis" "angebot" usw. -->
+	<form method="post" action="../../#">
 		<fieldset>
-			<legend>Kategorie erstellen:</legend>
+			<legend>Produktattribute festlegen</legend>
 			<div>
-				<label>Kategoriename:</label><br> <input name="kategoriename" type="text"
+				<label>Eins:</label><br> <input name="eins" type="text"
 					maxlength="50"
-					placeholder="Bitte geben Sie hier den Namen der Kategorie ein"
+					placeholder="Bitte geben Sie hier den Namen des Attributs ein"
 					required>
 			</div>
 			<button type="submit" id="button">Weiter</button>
@@ -22,4 +22,5 @@
 	</form>
 
 </body>
+
 </html>

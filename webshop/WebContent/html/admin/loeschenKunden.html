@@ -9,12 +9,19 @@
 <body>
 
 
-	<p>Kunden ID eingeben:</p>
+
 	<form method="post" action="../../KundenLoeschenServlet">
+		<fieldset>
+			<legend>Kunden ID eingeben:</legend>
 
-		<input name="id" type="text" size="20" required>
+			<div>
+				<input name="id" type="number" size="20" required>
+			</div>
 
-		<button type="submit" id="button">löschen</button>
+			<button type="submit" id="button">löschen</button>
+
+		</fieldset>
+
 	</form>
 
 

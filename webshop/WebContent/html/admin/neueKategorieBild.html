@@ -3,17 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Administrationsoberfläche</title>
-<link rel="stylesheet" href="../css/registrierung.css">
+<link rel="stylesheet" href="../css/stylesheet.css">
 
 </head>
 <body>
 
-	<form method="post" action="../../KategorieServlet">
+	<form method="post" action="../../BilderServlet"
+		enctype="multipart/form-data">
 		<fieldset>
 			<legend>Kategorie erstellen:</legend>
+
 			<div>
-				<label>Kategoriename:</label><br> <input name="kategoriename" type="text"
-					maxlength="50"
+				<label>Kategoriebild:</label><br> <input type="file"
+					name="image" id="image" accept="image/*" required>
+			</div>
+			<div>
+				<label>Bildbezeichnung:</label><br> <input name="bez"
+					type="text" maxlength="50"
 					placeholder="Bitte geben Sie hier den Namen der Kategorie ein"
 					required>
 			</div>

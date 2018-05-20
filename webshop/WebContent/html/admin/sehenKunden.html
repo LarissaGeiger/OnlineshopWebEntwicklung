@@ -7,19 +7,18 @@
 
 </head>
 <body>
-
-
-	<p>ID des Kunden eingeben:</p>
-
+	<h1>Kundendaten suchen</h1>
 	<form method="post" action="../../KundenSehenServlet">
+		<fieldset>
+			<legend>Nachname des Kunden eingeben:</legend>
+			<div>
+				<input name="nachname" type="text" required>
+			</div>
+			<button type="submit" id="button">suchen</button>
 
-		<input name="id" type="text" size="20" required>
+		</fieldset>
 
-		<button type="submit" id="button">suchen</button>
 	</form>
-
-
-
 
 
 </body>
