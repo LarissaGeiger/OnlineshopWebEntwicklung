@@ -1,4 +1,4 @@
-
+//package onlineshop;
 //
 //import java.io.IOException;
 //import java.io.PrintWriter;
@@ -83,9 +83,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -94,61 +91,45 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 import bean.KontaktBean;
 
 /**
  * Servlet implementation class ProduktformcServlet
  */
-@WebServlet("/KontaktformularServlet")
+@WebServlet("/kontaktformularservlet")
 public class KontaktformularServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup = "jdbc/MyTHIPool")
-	private DataSource ds;
-
-	private void persist(KontaktBean b) throws ServletException {
-		String[] generatedKeys = new String[] {"id"};
-		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(
-						"INSERT INTO  kontakt (vorname, nachname, email, usereingabe) VALUES (?, ?, ?, ?)", generatedKeys)) {
-			pstmt.setString(1, b.getVorname());
-			pstmt.setString(2, b.getNachname());
-			pstmt.setString(3, b.getEmail());
-			pstmt.setString(4, b.getUsereingabe());
-			pstmt.executeUpdate();
-			try(ResultSet rs = pstmt.getGeneratedKeys()){
-				while (rs.next()) {
-					b.setId(rs.getInt(1));
-				}
-			}
-		} catch (Exception ex) {
-			throw new ServletException(ex.getMessage());
-		}
-	}
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Servlet zur Entgegennahme von Formularinhalten und Generierung eines Beans
+		// zur Weitergabe
+		// der Formulardaten an eine JSP
 
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8"); // In diesem Format erwartet das Servlet jetzt die Formulardaten
+												// Alternative: GlassFish dazu bewegen, die Formulardaten gleich
+												// als UTF-8 zu interpretieren. Dazu muss GlassFish auf UTF-8 umge-
+												// stellt werden. Eine neue Zeile in die Datei glassfish-web.xml
+												// ergänzen (zu finden im WEB-INF-Ordner des Projektes):
+												// <parameter-encoding default-charset="UTF-8" />
 		KontaktBean kontakt = new KontaktBean();
 		kontakt.setGeschlecht(request.getParameter("geschlecht"));
 		kontakt.setVorname(request.getParameter("vorname"));
 		kontakt.setNachname(request.getParameter("nachname"));
 		kontakt.setEmail(request.getParameter("email"));
 		kontakt.setUsereingabe(request.getParameter("usereingabe"));
-		persist(kontakt);
 
 		// Scope "Request"
 		request.setAttribute("myKontakt", kontakt);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kontaktformular.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/kontaktformular.jsp");
 		dispatcher.forward(request, response);
 	}
 

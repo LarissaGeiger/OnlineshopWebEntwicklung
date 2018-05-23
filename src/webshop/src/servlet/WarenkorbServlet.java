@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class warenkorbServlet
  */
-@WebServlet("/warenkorbServlet")
+@WebServlet("/warenkorbservlet")
 public class WarenkorbServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,12 +40,32 @@ public class WarenkorbServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		
-		
+		request.setCharacterEncoding("UTF-8");	// In diesem Format erwartet das Servlet jetzt die Formulardaten
+		// Alternative: GlassFish dazu bewegen, die Formulardaten gleich
+		// als UTF-8 zu interpretieren. Dazu muss GlassFish auf UTF-8 umge-
+		// stellt werden. Eine neue Zeile in die Datei glassfish-web.xml
+		// ergänzen (zu finden im WEB-INF-Ordner des Projektes):
+		// <parameter-encoding default-charset="UTF-8" />
 		
 		final PrintWriter out = response.getWriter();
 		
 
-
+//		
+//		String geschlecht = request.getParameter("geschlecht");
+//		String email = request.getParameter("email");
+//		String vorname = request.getParameter("vorname");
+//		String nachname = request.getParameter("nachname");
+//		String usereingabe = request.getParameter("usereingabe");
+//		out.println("<!DOCTYPE html>");
+//		out.println("<html>");
+//		out.println("<body>");
+//		out.println("<h3>Empfangene Formulardaten</h3>");
+//		out.println("Geschlecht: " + geschlecht + "<br>");
+//		out.println("E-Mail: " + email + "<br>");
+//		out.println("Vorname: " + vorname + "<br>");
+//		out.println("Nachname: " + nachname + "<br>");
+//		out.println("Nachricht: " + usereingabe + "<br>");
+//		
 		out.println("</body>");
 		out.println("</html>");
 		

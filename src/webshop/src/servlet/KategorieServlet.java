@@ -2,9 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Connection;
-
+import java.sql.PreparedStatement;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -17,58 +16,63 @@ import javax.sql.DataSource;
 
 import bean.KategorieBean;
 
-@WebServlet("/KategorieServlet")
-public class KategorieServlet extends HttpServlet {
+@WebServlet("/kategorieservlet")
+public class KategorieServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+
 
 	@Resource(lookup = "jdbc/MyTHIPool")
 	private DataSource ds;
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Servlet zur Entgegennahme von Formularinhalten und Generierung eines Beans
+		// zur Weitergabe
+		// der Formulardaten an eine JSP
 
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8"); // In diesem Format erwartet das Servlet jetzt die Formulardaten
+												// Alternative: GlassFish dazu bewegen, die Formulardaten gleich
+												// als UTF-8 zu interpretieren. Dazu muss GlassFish auf UTF-8 umge-
+												// stellt werden. Eine neue Zeile in die Datei glassfish-web.xml
+												// ergänzen (zu finden im WEB-INF-Ordner des Projektes):
+												// <parameter-encoding default-charset="UTF-8" />
 		
 		KategorieBean kategorie = new KategorieBean();
-		kategorie.setName(request.getParameter("kategoriename"));
-
+		kategorie.setName(request.getParameter("kategorieName"));
+		
+		
+	
 		persist(kategorie);
 		
 		// Scope "Request"
 		request.setAttribute("kategorie", kategorie);
-
+		
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kategorie.jsp");
-	
-		dispatcher.forward(request, response);
+				final RequestDispatcher dispatcher = request.getRequestDispatcher("html/registrierung.jsp");
+				dispatcher.forward(request, response);
 
-	}
+}
 
 	private void persist(KategorieBean kategorie) throws ServletException {
-		String[] generatedKeys = new String[] { "id" };
-		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("INSERT INTO kategorie (name) VALUES (?)",
-						generatedKeys)) {
+		try(Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(
+						"INSERT INTO kategorie (kategorieName) VALUES (?)")) 
+		{
+							pstmt.setString(1, kategorie.getName());
+							pstmt.executeUpdate();
 
-			pstmt.setString(1, kategorie.getName());
-			pstmt.executeUpdate();
-			
-			try (ResultSet rs = pstmt.getGeneratedKeys()) {
-				while (rs.next()) {
-					kategorie.setId(rs.getInt(1));
-				}
-
-			}
-		} catch (Exception e) {
+						}
+		catch (Exception e) {
 			throw new ServletException(e.getMessage());
 		}
-
+		
+						
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -78,5 +82,5 @@ public class KategorieServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-}
+		
+	}
