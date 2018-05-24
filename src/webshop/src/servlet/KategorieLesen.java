@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 
 import bean.KategorieBean;
 
-@WebServlet("/kategorieLesen")
+@WebServlet("/KategorieLesen")
 public class KategorieLesen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -61,6 +61,7 @@ public class KategorieLesen extends HttpServlet {
 				while (rs.next()) {
 					KategorieBean k = new KategorieBean();
 					k.setName(rs.getString("name"));
+					k.setBildID(rs.getInt("bildID"));
 					kategorie.add(k);
 
 				}

@@ -39,12 +39,12 @@ public class BilderLesenServlet extends HttpServlet {
 //		Integer id = Integer.valueOf(request.getParameter("id"));
 //	
 //		String filename = request.getParameter("filename");
-		String filename = request.getParameter("bez");
+		String filename = request.getParameter("id");
 		// DB-Zugriff
 		try (Connection con = ds.getConnection();
 //			 PreparedStatement pstmt = con.prepareStatement("SELECT bez,file FROM bilder WHERE imageFileName = ?") ) {
 //			pstmt.setString(1, filename);
-				 PreparedStatement pstmt = con.prepareStatement("SELECT file FROM bilder WHERE bez = ?") ) {
+				 PreparedStatement pstmt = con.prepareStatement("SELECT file FROM bilder WHERE id = ?") ) {
 			pstmt.setString(1, filename);
 			try (ResultSet rs = pstmt.executeQuery()) {
 			
