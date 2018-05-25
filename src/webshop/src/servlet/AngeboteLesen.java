@@ -15,8 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.KategorieBean;
-import bean.ProduktBean;
+import bean.AngeboteBean;
 
 @WebServlet("/AngeboteLesen")
 public class AngeboteLesen extends HttpServlet {
@@ -29,36 +28,36 @@ public class AngeboteLesen extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		// Boolean angebotProdukt = Boolean.valueOf((request.getParameter("angebot")));
 
-		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
+		List<AngeboteBean> angebot = new ArrayList<AngeboteBean>();
 		angebot = read();
 		request.setAttribute("angebot", angebot);
 
-		request.getRequestDispatcher("index.jsp").include(request, response);
+		request.getRequestDispatcher("angebote.jsp").include(request, response);
 
 	}
 
-	private List<ProduktBean> read() throws ServletException {
+	private List<AngeboteBean> read() throws ServletException {
 
-		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
+		List<AngeboteBean> angebot = new ArrayList<AngeboteBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						//Abfrage ist falsch
-						"SELECT bilder.id, fernseher.bildID, kameras.bildID, notebooks.bildID, smartphone.bildID"
-								+ "FROM bilder, fernseher, kameras, notebooks, smartphone" + "WHERE bilder.id=? ")) {
+						// Eig müssten die Kategorienamen gelesen werden, falls eine neue Kategorie
+						// dabei ist
+						"SELECT bildId, name FROM smartphones WHERE angebot = true UNION ALL (SELECT bildID, name FROM kameras WHERE angebot = true)"
+								+ "UNION ALL (SELECT bildId, name FROM notebooks WHERE angebot = true) UNION ALL (SELECT bildId, name FROM fernseher WHERE angebot = true);")) {
 
-			pstmt.setString(1, "");
+			// pstmt.setString(1, "");
 			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs == rs) {
-					while (rs.next()) {
-						ProduktBean p = new ProduktBean();
-						p.setBildID(rs.getInt("bildID"));
-						angebot.add(p);
 
-					}
+				while (rs.next()) {
+					AngeboteBean s = new AngeboteBean();
+					s.setName(rs.getString("name"));
+					s.setBildID(rs.getInt("bildID"));
+					angebot.add(s);
 
 				}
+
 			}
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
