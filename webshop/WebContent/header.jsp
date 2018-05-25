@@ -57,9 +57,10 @@
 	- kontakformularServlet
 	- kontakBean
 	- kontakformular.jsp
+- Admin 
 
 
-nav muss noch auf allen Seiten gleich gemacht werden -> Test auf index.html
+
  -->
 
 
@@ -68,12 +69,15 @@ nav muss noch auf allen Seiten gleich gemacht werden -> Test auf index.html
 	<header>
 		<h1>Pluto - Ihr Elektronikfachmarkt in der Nähe</h1>
 		<p>
-			<input type="text" name="suchfeld" size="70" maxlength="50"
+			<input type="text" name="suchfeld" maxlength="50"
 				placeholder="Geben Sie hier Ihren Suchbegriff ein">
 		</p>
-		<select name="Kategorie wählen">
-			<c:forEach items="${kategorie}" var="parameter">
-				<option value="${parameter}">${parameter.name}</option>
-			</c:forEach>
-		</select>
+
+		<nav>
+			<select name="Kategorie wählen">
+				<c:forEach items="${kategorie}" var="parameter">
+					<option value="${parameter}">${parameter.name}</option>
+				</c:forEach>
+			</select> <a href="html/anmeldung.html">Anmelden</a>
+		</nav>
 	</header>
