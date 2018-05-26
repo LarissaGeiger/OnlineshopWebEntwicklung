@@ -3,9 +3,11 @@
 
 <!--jsp:include page="header.jsp" -->
 <article>
+
+	<h2>Tagesaktuelle Angebote</h2>
 	<jsp:include page="AngeboteLesen" />
 
-	
+
 	<h3>Unsere Kategorien für Sie</h3>
 
 	<table>

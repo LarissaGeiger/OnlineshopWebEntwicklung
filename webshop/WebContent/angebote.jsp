@@ -6,12 +6,11 @@
 
 
 	
-	<h2>Tagesaktuelle Angebote</h2>
 	<table>
 
 		<tr>
 			<c:forEach items="${angebot}" var="parameter">
-				<th><a href="html/${parameter.name}.jsp">Im Bereich
+				<th><a href="html/${parameter.name}.jsp">
 						${parameter.name}</a></th>
 			</c:forEach>
 

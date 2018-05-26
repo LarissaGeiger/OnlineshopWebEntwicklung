@@ -58,6 +58,15 @@
 	- kontakBean
 	- kontakformular.jsp
 - Admin 
+	- adminKunden
+		- sehen Kunden mit KundenSehenServlet, kunden.jsp, kundenFehler.jsp
+		- loeschen Kunden mit KundenLoeschenServlet, kundenLoeschen.jsp
+		- update Kunden mit KundenUpdateServlet, kundenUpdate.jsp
+	- adminKategorie
+	- adminKontakt
+		- sehen Kontakt mit KontakformulareSehenServlet (alle), KontaktSehenServlet (mit id), kontakformular.jsp (mit id), kontakformulareSehen.jsp (alle)
+		- loeschen Kontatk mit KontaktformularLoeschenServlet, kontaktformularLoeschen.jsp
+	- adminAngebot
 
 
 
