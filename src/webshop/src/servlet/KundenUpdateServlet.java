@@ -31,16 +31,9 @@ public class KundenUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Servlet zur Entgegennahme von Formularinhalten, Aktualisierung der Daten in
-		// einer DB und Generierung
-		// eines Beans zur Weitergabe der Formulardaten an eine JSP
-		request.setCharacterEncoding("UTF-8"); // In diesem Format erwartet das Servlet jetzt die Formulardaten
+		request.setCharacterEncoding("UTF-8");
 		KundeBean kunde = new KundeBean();
 		kunde.setId(Integer.valueOf(request.getParameter("id")));
-		kunde.setNachname(request.getParameter("nachname"));
-		kunde.setVorname(request.getParameter("vorname"));
-		kunde.setPasswort(request.getParameter("passwort"));
-		kunde.setEmail(request.getParameter("email"));
 		kunde.setGebdatum(request.getParameter("geburtsdatum"));
 		kunde.setHausnr(Integer.valueOf(request.getParameter("hausnummer")));
 		kunde.setOrt(request.getParameter("ort"));
@@ -55,7 +48,7 @@ public class KundenUpdateServlet extends HttpServlet {
 		request.setAttribute("myKunde", kunde);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundeUpdate.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenUpdate.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -63,20 +56,17 @@ public class KundenUpdateServlet extends HttpServlet {
 		// DB-Zugriff
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement("UPDATE customer "
-						+ "SET vorname = ?, nachname = ?, passwort = ?, straﬂe = ?, hausnr = ?, plz = ?, ort = ?, telefonnr = ?, gebdatum = ?, email=? "
+						+ "SET  straﬂe = ?, hausnr = ?, plz = ?, ort = ?, telefonnr = ?, gebdatum = ? "
 						+ "WHERE id = ?")) {
 
-			pstmt.setString(1, k.getVorname());
-			pstmt.setString(2, k.getNachname());
-			pstmt.setString(3, k.getPasswort());
-			pstmt.setString(4, k.getStraﬂe());
-			pstmt.setInt(5, k.getHausnr());
-			pstmt.setInt(6, k.getPlz());
-			pstmt.setString(7, k.getOrt());
-			pstmt.setString(8, k.getTelefonnr());
-			pstmt.setString(9, k.getGebdatum());
-			pstmt.setString(10, k.getEmail());
-			pstmt.setInt(11, k.getId());
+			pstmt.setString(1, k.getStraﬂe());
+			pstmt.setInt(2, k.getHausnr());
+			pstmt.setInt(3, k.getPlz());
+			pstmt.setString(4, k.getOrt());
+			pstmt.setString(5, k.getTelefonnr());
+			pstmt.setString(6, k.getGebdatum());
+
+			pstmt.setInt(7, k.getId());
 			pstmt.executeUpdate();
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());

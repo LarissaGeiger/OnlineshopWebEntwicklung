@@ -48,13 +48,17 @@ public class KundenSehenServlet extends HttpServlet {
 		// Integer id = Integer.valueOf(request.getParameter("id"));
 		List<KundeBean> kunden = read(nachname);
 		// DB-Zugriff
+		if (kunden.isEmpty()) {
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenFehler.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			// Scope "Request"
+			request.setAttribute("kunden", kunden);
 
-		// Scope "Request"
-		request.setAttribute("myKunde", kunden);
-
-		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kunden.jsp");
-		dispatcher.forward(request, response);
+			// Weiterleiten an JSP
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kunden.jsp");
+			dispatcher.forward(request, response);
+		}
 
 	}
 

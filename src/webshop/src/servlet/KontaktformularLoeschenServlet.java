@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 /**
- * Servlet implementation class kundeDeleteServlet
+ * Servlet implementation class KontaktformularLoeschenServlet
  */
-@WebServlet("/KundenLoeschenServlet")
-public class KundenLoeschenServlet extends HttpServlet {
+@WebServlet("/KontaktformularLoeschenServlet")
+public class KontaktformularLoeschenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup="jdbc/MyTHIPool")
@@ -34,17 +34,17 @@ public class KundenLoeschenServlet extends HttpServlet {
 		delete(id);
 				
 		// Scope "Request"
-		request.setAttribute("myKunde", id);
+		request.setAttribute("kontakt", id);
 		
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenLoeschen.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kontaktformularLoeschen.jsp");
 		dispatcher.forward(request, response);	
 	}
 
 	private void delete(Integer id) throws ServletException {
 	
 		try (Connection con = ds.getConnection();
-			 PreparedStatement pstmt = con.prepareStatement("DELETE FROM customer WHERE id = ?")){
+			 PreparedStatement pstmt = con.prepareStatement("DELETE FROM kontakt WHERE id = ?")){
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
 		} catch (Exception ex) {

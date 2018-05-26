@@ -39,13 +39,13 @@ public class BilderLesenServlet extends HttpServlet {
 //		Integer id = Integer.valueOf(request.getParameter("id"));
 //	
 //		String filename = request.getParameter("filename");
-		String filename = request.getParameter("id");
+		Integer id = Integer.valueOf(request.getParameter("id"));
 		// DB-Zugriff
 		try (Connection con = ds.getConnection();
 //			 PreparedStatement pstmt = con.prepareStatement("SELECT bez,file FROM bilder WHERE imageFileName = ?") ) {
 //			pstmt.setString(1, filename);
 				 PreparedStatement pstmt = con.prepareStatement("SELECT file FROM bilder WHERE id = ?") ) {
-			pstmt.setString(1, filename);
+			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 			
 				if (rs != null && rs.next()) {
@@ -57,7 +57,7 @@ public class BilderLesenServlet extends HttpServlet {
 					response.setHeader("Content-Length",String.valueOf(length));
 					
 //					response.setHeader("Content-Disposition", "attachment; filename=\"" + bez + "\"");
-					response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+					response.setHeader("Content-Disposition", "attachment; filename=\"" + id + "\"");
 					try (InputStream in = file.getBinaryStream()) {
 						final int bufferSize = 256;
 						byte[] buffer = new byte[bufferSize];
