@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Administrationsoberfläche</title>
+<link rel="stylesheet" href="#">
+
+</head>
+<body>
+
+	<!-- Servlet funktioniert noch nicht -->
+
+	<form method="post" action="../../KundenUpdateServlet">
+		<fieldset>
+			<legend>Produktangebot aktualisieren:</legend>
+			<div>
+				<label>Kategorie:</label> <input name="kategorie" type="text"
+					required>
+			</div>
+
+
+			<div>
+				<label>ID:</label> <input name="id" type="number" required>
+			</div>
+
+			<div>
+				<label>Angebot?</label> <input type="radio" name="angebot" id="r1"
+					value="true"> <label for="r1">Ja</label><input type="radio"
+					name="angebot" id="r2" value="false"> <label for="r2">Nein</label>
+			</div>
+
+			<button type="submit" id="button">Aktualisieren</button>
+		</fieldset>
+	</form>
+
+
+
+
+</body>
+</html>
