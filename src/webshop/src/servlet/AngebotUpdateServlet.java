@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -40,7 +41,7 @@ public class AngebotUpdateServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		AngeboteBean angebot = new AngeboteBean();
-		angebot.setProduktID(Integer.valueOf(request.getParameter("id")));
+		angebot.setArtikelnr(Integer.valueOf(request.getParameter("artikelnr")));
 		angebot.setKategorieName(request.getParameter("kategorieName"));
 		angebot.setAngebot(Boolean.valueOf(request.getParameter("angebot")));
 
@@ -51,7 +52,7 @@ public class AngebotUpdateServlet extends HttpServlet {
 		request.setAttribute("angebot", angebot);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("angebote.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/angebotUpdate.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -68,16 +69,20 @@ public class AngebotUpdateServlet extends HttpServlet {
 
 	private void persist(AngeboteBean a) throws ServletException {
 
-		try (
-//Datenbankabfrage fehlt
-				Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("UPDATE x "
-						+ "SET  angebot = ? "
-						+ "WHERE id = ?")) {
+		try (Connection con = ds.getConnection(); final Statement stmt = con.createStatement()) {
+			stmt.executeUpdate("UPDATE  " + a.getKategorieName() + " SET angebot = " + a.isAngebot()
+					+ " WHERE artikelnr = " + a.getArtikelnr().toString());
 
-			pstmt.setBoolean(1, a.isAngebot());
-
-			pstmt.executeUpdate();
+			// try (
+			//// Datenbankabfrage fehlt
+			// Connection con = ds.getConnection();
+			// PreparedStatement pstmt = con.prepareStatement("UPDATE x "
+			// + "SET angebot = ? "
+			// + "WHERE id = ?")) {
+			//
+			// pstmt.setBoolean(1, a.isAngebot());
+			//
+			// pstmt.executeUpdate();
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
