@@ -10,6 +10,7 @@ public class KategorieBean implements Serializable {
 		private Integer id;
 		private String name;
 		private Integer bildID;
+		
 		public Integer getId() {
 			return id;
 		}

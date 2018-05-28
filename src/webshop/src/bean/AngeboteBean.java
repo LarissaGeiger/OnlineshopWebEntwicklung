@@ -6,8 +6,10 @@ public class AngeboteBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String kategorieName;
-	private Integer produktID;
+	private Integer artikelnr;
 
+
+	
 
 	private String name;
 	private boolean angebot;
@@ -40,13 +42,7 @@ public class AngeboteBean implements Serializable {
 		this.kategorieName = kategorieName;
 	}
 
-	public Integer getProduktID() {
-		return produktID;
-	}
-
-	public void setProduktID(Integer produktID) {
-		this.produktID = produktID;
-	}
+	
 
 	public boolean isAngebot() {
 		return angebot;
@@ -55,5 +51,11 @@ public class AngeboteBean implements Serializable {
 	public void setAngebot(boolean angebot) {
 		this.angebot = angebot;
 	}
+	public Integer getArtikelnr() {
+		return artikelnr;
+	}
 
+	public void setArtikelnr(Integer artikelnr) {
+		this.artikelnr = artikelnr;
+	}
 }
