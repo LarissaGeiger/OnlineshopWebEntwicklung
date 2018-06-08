@@ -12,7 +12,7 @@ public class ProduktBean {
 	private String modell;
 	private boolean angebot;
 
-	private int bildschirmdiagonale;
+	private double bildschirmdiagonale;
 
 	private String displaytech;
 	private int gewicht;
@@ -22,28 +22,14 @@ public class ProduktBean {
 	private int arbeitsspeicher;
 	private int sensorauflösung;
 	private int leistung;
-	private int länge;
-	private int breite;
+	private double länge;
+	private double breite;
 	private String besonderheit;
 	private int modelljahr;
-	private int höhe;
-	private int displaygröße;
+	private double höhe;
+	private double displaygröße;
 
-	public int getDisplaygröße() {
-		return displaygröße;
-	}
-
-	public void setDisplaygröße(int displaygröße) {
-		this.displaygröße = displaygröße;
-	}
-
-	public int getHöhe() {
-		return höhe;
-	}
-
-	public void setHöhe(int höhe) {
-		this.höhe = höhe;
-	}
+	
 
 	public int getGewicht() {
 		return gewicht;
@@ -101,21 +87,8 @@ public class ProduktBean {
 		this.leistung = leistung;
 	}
 
-	public int getLänge() {
-		return länge;
-	}
 
-	public void setLänge(int länge) {
-		this.länge = länge;
-	}
 
-	public int getBreite() {
-		return breite;
-	}
-
-	public void setBreite(int breite) {
-		this.breite = breite;
-	}
 
 	public String getBesonderheit() {
 		return besonderheit;
@@ -213,12 +186,46 @@ public class ProduktBean {
 		this.kategorieID = kategorieID;
 	}
 
-	public int getBildschirmdiagonale() {
+	public double getBildschirmdiagonale() {
 		return bildschirmdiagonale;
 	}
 
-	public void setBildschirmdiagonale(int bildschirmdiagonale) {
+	public void setBildschirmdiagonale(double bildschirmdiagonale) {
 		this.bildschirmdiagonale = bildschirmdiagonale;
 	}
+
+	public double getLänge() {
+		return länge;
+	}
+
+	public void setLänge(double länge) {
+		this.länge = länge;
+	}
+
+	public double getBreite() {
+		return breite;
+	}
+
+	public void setBreite(double breite) {
+		this.breite = breite;
+	}
+
+	public double getHöhe() {
+		return höhe;
+	}
+
+	public void setHöhe(double höhe) {
+		this.höhe = höhe;
+	}
+
+	public double getDisplaygröße() {
+		return displaygröße;
+	}
+
+	public void setDisplaygröße(double displaygröße) {
+		this.displaygröße = displaygröße;
+	}
+
+
 
 }
