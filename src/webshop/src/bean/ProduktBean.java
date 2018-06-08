@@ -1,19 +1,21 @@
 package bean;
 
 public class ProduktBean {
-
-	private int artikelnr;
+	//müssen bei jedem Produkt dabei sein (NOT NULL)
+	private int artikelnr; //primaryKey
 	private String name;
 	private double preis;
-	private int bildID;
 	private String farbe;
-	private int kategorieID;
 	private String marke;
-	private String modell;
+	
+	//sollen automatisch gesetzt werden (NOT NULL)
+	private int bildID;
+	private int kategorieID;
 	private boolean angebot;
 
+	//können bei einem Produkt dabei sein (NULL)
+	private String modell;
 	private double bildschirmdiagonale;
-
 	private String displaytech;
 	private int gewicht;
 	private String betriebssystem;
