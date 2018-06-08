@@ -19,7 +19,7 @@ public class ProduktBean {
 	private String betriebssystem;
 	private int speicherplatz;
 	private int baujahr;
-	private int arbeitsgröße;
+	private int arbeitsspeicher;
 	private int sensorauflösung;
 	private int leistung;
 	private int länge;
@@ -68,12 +68,12 @@ public class ProduktBean {
 		this.baujahr = baujahr;
 	}
 
-	public int getArbeitsgröße() {
-		return arbeitsgröße;
+	public int getArbeitsspeicher() {
+		return arbeitsspeicher;
 	}
 
-	public void setArbeitsgröße(int arbeitsgröße) {
-		this.arbeitsgröße = arbeitsgröße;
+	public void setArbeitsspeicher(int arbeitsspeicher) {
+		this.arbeitsspeicher = arbeitsspeicher;
 	}
 
 	public int getSensorauflösung() {
