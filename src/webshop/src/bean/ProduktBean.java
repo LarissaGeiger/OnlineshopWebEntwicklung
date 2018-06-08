@@ -27,6 +27,15 @@ public class ProduktBean {
 	private String besonderheit;
 	private int modelljahr;
 	private int höhe;
+	private int displaygröße;
+
+	public int getDisplaygröße() {
+		return displaygröße;
+	}
+
+	public void setDisplaygröße(int displaygröße) {
+		this.displaygröße = displaygröße;
+	}
 
 	public int getHöhe() {
 		return höhe;
