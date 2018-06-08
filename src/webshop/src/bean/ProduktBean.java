@@ -2,19 +2,117 @@ package bean;
 
 public class ProduktBean {
 	
-	private boolean angebot;
+	
 	private int artikelnr;
-	private int bildID;
-	private int bildschirmgröße;
-	private String displaytech;
-	private String farbe;
-	private int kategorieID;
-	private String marke;
-	private String modell;
 	private String name;
 	private double preis;
+	private int bildID;
+	private String farbe;
+	//private int kategorieID;
+	private String marke;
+	private String modell;
+	private boolean angebot;
 	
 	
+	private int bildschirmdia;
+	private String displaytech;
+	private int gewicht;
+	private String betriebssystem;
+	private int speicherplatz;
+	private int baujahr;
+	private int arbeitsgröße;
+	private int sensorauflösung;
+	private int leistung;
+	private int länge;
+	private int breite;
+	private String besonderheit;
+	private int modelljahr;
+	private int höhe;
+	
+	
+	
+	
+	public int getBildschirmdia() {
+		return bildschirmdia;
+	}
+	public void setBildschirmdia(int bildschirmdia) {
+		this.bildschirmdia = bildschirmdia;
+	}
+	public int getHöhe() {
+		return höhe;
+	}
+	public void setHöhe(int höhe) {
+		this.höhe = höhe;
+	}
+	
+
+	public int getGewicht() {
+		return gewicht;
+	}
+	public void setGewicht(int gewicht) {
+		this.gewicht = gewicht;
+	}
+	public String getBetriebssystem() {
+		return betriebssystem;
+	}
+	public void setBetriebssystem(String betriebssystem) {
+		this.betriebssystem = betriebssystem;
+	}
+	public int getSpeicherplatz() {
+		return speicherplatz;
+	}
+	public void setSpeicherplatz(int speicherplatz) {
+		this.speicherplatz = speicherplatz;
+	}
+	public int getBaujahr() {
+		return baujahr;
+	}
+	public void setBaujahr(int baujahr) {
+		this.baujahr = baujahr;
+	}
+	public int getArbeitsgröße() {
+		return arbeitsgröße;
+	}
+	public void setArbeitsgröße(int arbeitsgröße) {
+		this.arbeitsgröße = arbeitsgröße;
+	}
+	public int getSensorauflösung() {
+		return sensorauflösung;
+	}
+	public void setSensorauflösung(int sensorauflösung) {
+		this.sensorauflösung = sensorauflösung;
+	}
+	public int getLeistung() {
+		return leistung;
+	}
+	public void setLeistung(int leistung) {
+		this.leistung = leistung;
+	}
+	public int getLänge() {
+		return länge;
+	}
+	public void setLänge(int länge) {
+		this.länge = länge;
+	}
+	public int getBreite() {
+		return breite;
+	}
+	public void setBreite(int breite) {
+		this.breite = breite;
+	}
+	public String getBesonderheit() {
+		return besonderheit;
+	}
+	public void setBesonderheit(String besonderheit) {
+		this.besonderheit = besonderheit;
+	}
+	public int getModelljahr() {
+		return modelljahr;
+	}
+	public void setModelljahr(int modelljahr) {
+		this.modelljahr = modelljahr;
+	}
+
 	public boolean isAngebot() {
 		return angebot;
 	}
@@ -33,12 +131,7 @@ public class ProduktBean {
 	public void setBildID(int bildID) {
 		this.bildID = bildID;
 	}
-	public int getBildschirmgröße() {
-		return bildschirmgröße;
-	}
-	public void setBildschirmgröße(int bildschirmgröße) {
-		this.bildschirmgröße = bildschirmgröße;
-	}
+
 	public String getDisplaytech() {
 		return displaytech;
 	}
@@ -51,12 +144,7 @@ public class ProduktBean {
 	public void setFarbe(String farbe) {
 		this.farbe = farbe;
 	}
-	public int getKategorieID() {
-		return kategorieID;
-	}
-	public void setKategorieID(int kategorieID) {
-		this.kategorieID = kategorieID;
-	}
+
 	public String getMarke() {
 		return marke;
 	}
