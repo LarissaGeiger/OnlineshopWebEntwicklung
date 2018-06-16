@@ -12,14 +12,6 @@ public class KundeBean implements Serializable {
 	private String passwort;
 	private Integer id;
 	private String telefonnr;
-	public String getTelefonnr() {
-		return telefonnr;
-	}
-
-	public void setTelefonnr(String telefonnr) {
-		this.telefonnr = telefonnr;
-	}
-
 	private String straﬂe;
 	private Integer hausnr;
 	private Integer plz;
@@ -40,6 +32,14 @@ public class KundeBean implements Serializable {
 
 	public void setHausnr(Integer hausnr) {
 		this.hausnr = hausnr;
+	}
+
+	public String getTelefonnr() {
+		return telefonnr;
+	}
+
+	public void setTelefonnr(String telefonnr) {
+		this.telefonnr = telefonnr;
 	}
 
 	public Integer getPlz() {
@@ -105,8 +105,6 @@ public class KundeBean implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public String getStraﬂe() {
 		return straﬂe;
