@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" errorPage="kundenFehler.jsp"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 
@@ -47,6 +47,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-
+	<!-- <button id="button" type="submit" onclick="../html/admin/adminKunden.html">Zurück</button> -->
+	<a href="../html/admin/adminKunden.html">Zurück </a>
 </body>
 </html>
