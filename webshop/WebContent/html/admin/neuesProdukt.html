@@ -14,9 +14,14 @@
 		element.addEventListener("change", eingabefeld);
 		element = document.getElementById("kameras");
 		element.addEventListener("change", eingabefeld);
+		element = document.getElementById("smartphones");
+		element.addEventListener("change", eingabefeld);
+		element = document.getElementById("notebooks");
+		element.addEventListener("change", eingabefeld);
 	}
 
 	function eingabefeld() {
+
 		document.getElementById("modell").disabled = document
 				.getElementById("fernseher").checked;
 		document.getElementById("displaygröße").disabled = document
@@ -29,6 +34,39 @@
 				.getElementById("fernseher").checked;
 		document.getElementById("arbeitsspeicher").disabled = document
 				.getElementById("fernseher").checked;
+
+		document.getElementById("speicherplatz").disabled = document
+				.getElementById("kameras").checked;
+		document.getElementById("betriebssystem").disabled = document
+				.getElementById("kameras").checked;
+		document.getElementById("arbeitsspeicher").disabled = document
+				.getElementById("kameras").checked;
+		document.getElementById("displaytech").disabled = document
+				.getElementById("kameras").checked;
+		document.getElementById("bildschirmdia").disabled = document
+				.getElementById("kameras").checked;
+
+		document.getElementById("modell").disabled = document
+				.getElementById("smartphones").checked;
+		document.getElementById("sensorauflösung").disabled = document
+				.getElementById("smartphones").checked;
+		document.getElementById("arbeitsspeicher").disabled = document
+				.getElementById("smartphones").checked;
+		document.getElementById("displaytech").disabled = document
+				.getElementById("smartphones").checked;
+		document.getElementById("bildschirmdia").disabled = document
+				.getElementById("smartphones").checked;
+
+		document.getElementById("modell").disabled = document
+				.getElementById("notebooks").checked;
+		document.getElementById("sensorauflösung").disabled = document
+				.getElementById("notebooks").checked;
+		document.getElementById("speicherplatz").disabled = document
+				.getElementById("notebooks").checked;
+		document.getElementById("displaytech").disabled = document
+				.getElementById("notebooks").checked;
+		document.getElementById("bildschirmdia").disabled = document
+				.getElementById("notebooks").checked;
 
 	}
 </script>
@@ -131,7 +169,7 @@
 
 
 
-			<button type="submit" id="button">Weiter</button>
+			<button type="submit" id="button">Hinzufügen</button>
 		</fieldset>
 	</form>
 
