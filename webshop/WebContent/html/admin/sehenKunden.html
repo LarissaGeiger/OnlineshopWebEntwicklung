@@ -2,16 +2,16 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Administrationsoberfläche</title>
-<link rel="stylesheet" href="../css/stylesheet.css">
+<title>Kunden sehen</title>
+<link rel="stylesheet" href="../../css/adminForm.css">
 
 </head>
 <body>
-	<h1>Kundendaten suchen</h1>
+	
 	<form method="post" action="../../KundenSehenServlet">
 		<fieldset>
-			<legend>Nachname des Kunden eingeben:</legend>
-			<div>
+			<legend>Kundendaten suchen</legend>
+			<div> <label>Nachname des Kunden:</label>
 				<input name="nachname" type="text" required>
 			</div>
 			<button type="submit" id="button">suchen</button>

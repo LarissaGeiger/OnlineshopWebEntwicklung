@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Produkt löschen</title>
+<link rel="stylesheet" href="../../css/adminForm.css">
+
+</head>
+<body>
+	<form method="post" action="../../ProduktLoeschenServlet">
+		<fieldset>
+			<legend>Produkt löschen:</legend>
+			<div>
+				<label>Kategorie:</label> <input name="name" type="text"
+					required>
+			</div>
+			<div>
+				<label>Artikelnummer:</label> <input name="artikelnr" type="number"
+					required>
+			</div>
+
+			<button type="submit" id="button">Löschen</button>
+		</fieldset>
+	</form>
+</body>
+</html>

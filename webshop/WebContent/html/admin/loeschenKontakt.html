@@ -2,18 +2,20 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Administrationsoberfläche</title>
-<link rel="stylesheet" href="../css/startseite.css">
+<title>Kontakt Löschen</title>
+<link rel="stylesheet" href="../../css/adminForm.css">
 
 </head>
 <body>
 
+
 	<form method="post" action="../../KontaktformularLoeschenServlet">
 		<fieldset>
-			<legend>Kontaktformular ID eingeben:</legend>
+			<legend>Kontaktformular löschen:</legend>
 
 			<div>
-				<input name="id" type="number" required>
+				<label>ID des Kontakformulars:</label><input name="id" type="number"
+					required>
 			</div>
 
 			<button type="submit" id="button">löschen</button>

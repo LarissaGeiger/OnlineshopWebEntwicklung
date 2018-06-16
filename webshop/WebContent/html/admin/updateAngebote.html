@@ -2,13 +2,13 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Administrationsoberfläche</title>
-<link rel="stylesheet" href="#">
+<title>Angeobte aktualisieren</title>
+<link rel="stylesheet" href="../../css/adminForm.css">
 
 </head>
 <body>
 
-	<!-- Servlet funktioniert noch nicht -->
+
 
 	<form method="post" action="../../AngebotUpdateServlet">
 		<fieldset>
@@ -20,13 +20,15 @@
 
 
 			<div>
-				<label>Artikelnummer:</label> <input name="artikelnr" type="number" required>
+				<label>Artikelnummer:</label> <input name="artikelnr" type="number"
+					required>
 			</div>
 
-			<div>
-				<label>Angebot?</label> <input type="radio" name="angebot" id="r1"
-					value="true"> <label for="r1">Ja</label><input type="radio"
-					name="angebot" id="r2" value="false"> <label for="r2">Nein</label>
+			<div class="angebot">
+				<label>Angebot?</label> <br>
+				<label for="r1">Ja</label> <input type="radio" name="angebot"
+					id="r1" value="true"><label for="r2">Nein</label> <input
+					type="radio" name="angebot" id="r2" value="false">
 			</div>
 
 			<button type="submit" id="button">Aktualisieren</button>

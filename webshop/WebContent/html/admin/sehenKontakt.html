@@ -2,21 +2,39 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Administrationsoberfläche</title>
-<link rel="stylesheet" href="../css/stylesheet.css">
+<title>Kontaktkformulare Sehen</title>
+<link rel="stylesheet" href="../../css/adminForm.css">
 </head>
 <body>
 
 
 	<h1>Kontaktformulare ansehen</h1>
-	<ul>
 
-		<li>Kontakformulare anhand der ID suchen:
+	<form method="post" action="../../KontaktSehenServlet">
+		<fieldset>
+			<legend>Kontakformulare anhand der ID suchen:</legend>
+			<div>
+				<label>ID:</label> <input name="id" type="text" required>
+			</div>
+			<button type="submit" id="button">suchen</button>
+
+		</fieldset>
+
+	</form>
+
+	<p>
+		<a href="../../KontaktformulareSehenServlet">Alle</a> Kontakformulare
+		ansehen
+	</p>
+
+	<!-- <ul>
+
+		<li>
 			<form method="post" action="../../KontaktSehenServlet">
 				<fieldset>
-					<legend>ID des Kontaktfomulars eingeben:</legend>
+					<legend>Kontakformulare anhand der ID suchen:</legend>
 					<div>
-						<input name="id" type="text" required>
+						<label>ID:</label> <input name="id" type="text" required>
 					</div>
 					<button type="submit" id="button">suchen</button>
 
@@ -24,19 +42,9 @@
 
 			</form>
 		</li>
-		<li>Alle Kontaktformulare <a
-			href="../../KontaktformulareSehenServlet">ansehen</a>
-		</li>
-	</ul>
-	<!-- <form method="post" action="../../KontakformulareSehenServlet">
-		<fieldset>
-			<legend>Alle Kontakformulare ansehen</legend>
+		<li><a href="../../KontaktformulareSehenServlet">Alle</a>
+			Kontakformulare ansehen</li>
+	</ul> -->
 
-			<button type="submit" id="button">Alle suchen</button>
-
-		</fieldset>
-
-	</form> 
- -->
 </body>
 </html>

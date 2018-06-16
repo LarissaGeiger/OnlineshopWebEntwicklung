@@ -2,64 +2,135 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Administrationsoberfläche</title>
-<link rel="stylesheet" href="../css/stylesheet.css">
+<title>Produkt anlegen</title>
+<link rel="stylesheet" href="../../css/adminForm.css">
+
+<script>
+	document.addEventListener("DOMContentLoaded", init);
+
+	function init() {
+
+		var element = document.getElementById("fernseher");
+		element.addEventListener("change", eingabefeld);
+		element = document.getElementById("kameras");
+		element.addEventListener("change", eingabefeld);
+	}
+
+	function eingabefeld() {
+		document.getElementById("modell").disabled = document
+				.getElementById("fernseher").checked;
+		document.getElementById("displaygröße").disabled = document
+				.getElementById("fernseher").checked;
+		document.getElementById("sensorauflösung").disabled = document
+				.getElementById("fernseher").checked;
+		document.getElementById("speicherplatz").disabled = document
+				.getElementById("fernseher").checked;
+		document.getElementById("betriebssystem").disabled = document
+				.getElementById("fernseher").checked;
+		document.getElementById("arbeitsspeicher").disabled = document
+				.getElementById("fernseher").checked;
+
+	}
+</script>
+
+
 
 </head>
 <body>
-<!-- 
-dynamische Seite! -->
 
-	<form method="post" enctype="multipart/form-data" action="#">
+
+	<form method="post" enctype="multipart/form-data"
+		action="../../ProduktServlet">
 		<fieldset>
-			<legend>Bitte pflegen Sie hier ein Produkt der Kategorie
+			<legend>Bitte pflegen Sie hier ein Produkt eine Kategorie
 				ein:</legend>
 			<div>
-				<label>Name:</label><br> <input name="produktname" type="text" 
-					maxlength="50"
-					placeholder="Bitte geben Sie hier den Namen des Produktes ein"
-					required><label for="produktname">*</label>
+				<label>Wählen Sie zuerst eine Kategorie aus:</label><input
+					id="fernseher" name="kategorieName" type="radio" value="fernseher"><label
+					for="fernseher">Fernseher</label> <input id="kameras"
+					name="kategorieName" type="radio" value="kameras"><label
+					for="kameras">Kameras</label> <input id="smartphones"
+					name="kategorieName" type="radio" value="smartphones"><label
+					for="smartphones">Smartphones</label> <input id="notebooks"
+					name="kategorieName" type="radio" value="notebooks"><label
+					for="notebooks">Notebooks</label>
+			</div>
+
+			<div>
+				<label>Name:</label><input name="name" type="text" id="name"
+					maxlength="50" required>
 
 			</div>
-			<p>
-				Preis:<br> <input name="preis" type="int" 
-					maxlength="50"
-					placeholder="Bitte geben Sie hier den Preis des Produktes ein"
-					required><label for="preis">*</label>
-			</p>
+			<div>
+				<label>Artikelnummer:</label> <input name="artikelnr" id="artikelnr"
+					type="number" maxlength="50" required>
+			</div>
+			<div>
+				<label>Preis:</label> <input name="preis" id="preis" type="number"
+					maxlength="50" required>
+			</div>
 
-			<p>
-				Farbe:<br> <input name="farbe" type="text" 
-					maxlength="50"
-					placeholder="Bitte geben Sie hier die Farbe des Produktes ein"
-					required><label for="farbe">*</label>
-			</p>
+			<div>
+				<label>Farbe:</label> <input name="farbe" id="farbe" type="text"
+					maxlength="50" required>
+			</div>
 
-			<p>
-				Marke:<br> <input name="marke" type="text" 
-					maxlength="50"
-					placeholder="Bitte geben Sie hier die Marke des Produktes ein"
-					required><label for="marke">*</label>
-			</p>
-			<p>
-				Artikelnummer:<br> <input name="artikelnummer" type="text"
-					 maxlength="50"
-					placeholder="Bitte geben Sie hier die Artikelnummer des Produktes ein"
-					required><label for="artikelnummer">*</label>
-			</p>
+			<div>
+				<label>Marke:</label> <input name="marke" id="marke" type="text"
+					maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Produktbild hochladen:</label> <input type="file"
+					name="image" id="image" accept="image/*" required>
+			</div>
+			<div>
+				<label>Name des Produktbildes</label><input type="text" name="bez"
+					id="bez" required>
+			</div>
+			<div>
+				<label>Displaytechnologie:</label> <input name="displaytech"
+					id="displaytech" type="text" maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Bildschirmdiagonale:</label> <input name="bildschirmdia"
+					id="bildschirmdia" type="number" maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Betriebssystem:</label> <input name="betriebssystem"
+					id="betriebssystem" type="text" maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Speicherplatz:</label> <input name="speicherplatz"
+					id="speicherplatz" type="number" maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Arbeitsspeicher:</label> <input name="arbeitsspeicher"
+					id="arbeitsspeicher" type="number" maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Displaygröße:</label> <input name="displaygröße"
+					id="displaygröße" type="number" maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Sensorauflösung:</label> <input name="sensorauflösung"
+					id="sensorauflösung" type="number" maxlength="50" required>
+			</div>
+
+			<div>
+				<label>Modell:</label> <input name="modell" id="modell" type="text"
+					maxlength="50" required>
+			</div>
 
 
-			<p>
-				Artikelnummer:<br> <input name="artikelnummer" type="text"
-					 maxlength="50"
-					placeholder="Bitte geben Sie hier die Artikelnummer des Produktes ein"
-					required><label for="artikelnummer">*</label>
-			</p>
 
-			<p>
-				Produktbild hochladen: <input type="file" name="produktbild"
-					accept="image/*">
-			</p>
+
 			<button type="submit" id="button">Weiter</button>
 		</fieldset>
 	</form>
