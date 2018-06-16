@@ -50,33 +50,6 @@ public class ProduktServlet extends HttpServlet {
 		produkt.setName(request.getParameter("name"));
 		produkt.setPreis(Double.valueOf(request.getParameter("preis")));
 
-		// wird nicht erkannt
-		if (kategorieName == "fernseher") {
-			produkt.setDisplaytech(request.getParameter("displaytech"));
-			produkt.setBildschirmdiagonale(Double.valueOf(request.getParameter("bildschirmdia")));
-		}
-
-		if (kategorieName == "kameras") {
-			produkt.setModell(request.getParameter("modell"));
-			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-			produkt.setSensorauflösung(Integer.valueOf(request.getParameter("sensorauflösung")));
-
-		}
-
-		if (kategorieName == "smartphones") {
-			produkt.setSpeicherplatz(Integer.valueOf(request.getParameter("speicherplatz")));
-			produkt.setBetriebssystem(request.getParameter("betriebssystem"));
-			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-
-		}
-
-		if (kategorieName == "notebooks") {
-			produkt.setArbeitsspeicher(Integer.valueOf(request.getParameter("arbeitsspeicher")));
-			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-			produkt.setBetriebssystem(request.getParameter("betriebssystem"));
-
-		}
-
 		BilderBean bild = new BilderBean();
 		bild.setBez(request.getParameter("bez"));
 		Part filepart = request.getPart("image");
@@ -94,26 +67,69 @@ public class ProduktServlet extends HttpServlet {
 		}
 
 		persist(bild);
-
 		produkt.setBildID(bild.getId());
 
 		read(produkt, kategorieName);
 
-		if (produkt.getKategorieID() == 1)
+		// if (kategorieName == "fernseher") {
+		// produkt.setDisplaytech(request.getParameter("displaytech"));
+		// produkt.setBildschirmdiagonale(Double.valueOf(request.getParameter("bildschirmdia")));
+		// } else
+		//
+		// if (kategorieName == "kameras") {
+		// produkt.setModell(request.getParameter("modell"));
+		// produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+		// produkt.setSensorauflösung(Integer.valueOf(request.getParameter("sensorauflösung")));
+		//
+		// } else
+		//
+		// if (kategorieName == "smartphones") {
+		// produkt.setSpeicherplatz(Integer.valueOf(request.getParameter("speicherplatz")));
+		// produkt.setBetriebssystem(request.getParameter("betriebssystem"));
+		// produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+		//
+		// }
+		// // notebooks
+		// else {
+		// produkt.setArbeitsspeicher(Integer.valueOf(request.getParameter("arbeitsspeicher")));
+		// produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+		// produkt.setBetriebssystem(request.getParameter("betriebssystem"));
+		//
+		// }
+
+		if (produkt.getKategorieID() == 1) {
+			produkt.setDisplaytech(request.getParameter("displaytech"));
+			produkt.setBildschirmdiagonale(Double.valueOf(request.getParameter("bildschirmdia")));
+
 			persistFernseher(produkt);
+		}
+		if (produkt.getKategorieID() == 4) {
+			produkt.setModell(request.getParameter("modell"));
+			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+			produkt.setSensorauflösung(Integer.valueOf(request.getParameter("sensorauflösung")));
 
-		if (produkt.getKategorieID() == 4)
 			persistKameras(produkt);
+		}
+		if (produkt.getKategorieID() == 3) {
+			produkt.setSpeicherplatz(Integer.valueOf(request.getParameter("speicherplatz")));
+			produkt.setBetriebssystem(request.getParameter("betriebssystem"));
+			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
 
-		if (produkt.getKategorieID() == 3)
 			persistSmartphones(produkt);
+		}
+		if (produkt.getKategorieID() == 2) {
+			produkt.setArbeitsspeicher(Integer.valueOf(request.getParameter("arbeitsspeicher")));
+			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+			produkt.setBetriebssystem(request.getParameter("betriebssystem"));
 
-		if (produkt.getKategorieID() == 2)
 			persistNotebooks(produkt);
-
+		}
 		request.setAttribute("produkt", produkt);
 
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/produkt.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminProdukte.html");
+
+		// final RequestDispatcher dispatcher =
+		// request.getRequestDispatcher("jsp/produkt.jsp");
 		dispatcher.forward(request, response);
 	}
 
