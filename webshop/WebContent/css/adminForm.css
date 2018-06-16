@@ -1,0 +1,64 @@
+html {
+	background: white;
+	font-family: arial, sans-serif;
+}
+
+form div {
+	padding: 1em;
+}
+
+input {
+	width: 20em;
+	border: 1px solid #000330;
+}
+
+label {
+	display: inline-block;
+	min-width: 15em;
+}
+
+button {
+	width: 10em;
+	/* 	margin-left: 19em;  */
+	margin: auto;
+}
+
+fieldset {
+	width: 35em;
+	padding: 2em;
+	background: #fffee1;
+	border: 0.5px solid #000330;
+	border-radius: 8px;
+	/* margin: auto; */
+}
+
+legend {
+	background: snow;
+	padding: 0.5em;
+	border: 0.5px solid #000330;
+	border-radius: 5px;
+	/* text-decoration: underline; */
+	font-size: 1em;
+	font-weight: bold;
+	/* margin: auto; */
+}
+
+button:hover {
+	background: silver;
+}
+
+input:hover {
+	background: ivory;
+	/* border: 2.5px solid #000330; */
+	border: 2px solid #140147;
+}
+
+h1 {
+	font-size: 1.7em;
+	background-color: #ebebeb;
+}
+
+.angebot {
+	position: relative;
+	display: block;
+}
