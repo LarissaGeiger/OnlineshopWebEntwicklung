@@ -14,14 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 /**
- * Servlet implementation class KontaktformularLoeschenServlet
+ * Servlet implementation class PorduktLoeschenServlet
  */
-@WebServlet("/KontaktformularLoeschenServlet")
-public class KontaktformularLoeschenServlet extends HttpServlet {
+@WebServlet("/ProduktLoeschenServlet")
+public class ProduktLoeschenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	@Resource(lookup = "jdbc/MyTHIPool")
 	private DataSource ds;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ProduktLoeschenServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -30,30 +37,35 @@ public class KontaktformularLoeschenServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		Integer id = Integer.valueOf(request.getParameter("id"));
+		String name = request.getParameter("name");
+		Integer artikelnr = Integer.valueOf(request.getParameter("artikelnr"));
 
 		// DB-Zugriff
-		delete(id);
+		delete(name, artikelnr);
 
 		// Scope "Request"
-		request.setAttribute("kontakt", id);
+		request.setAttribute("produkt", name);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminKontakt.html");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminProdukt.html");
 		dispatcher.forward(request, response);
 	}
 
-	private void delete(Integer id) throws ServletException {
+	private void delete(String name, Integer artikelnr) throws ServletException {
 
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("DELETE FROM kontakt WHERE id = ?")) {
-			pstmt.setInt(1, id);
+				PreparedStatement pstmt = con.prepareStatement("DELETE FROM " + name + " WHERE artikelnr = ?")) {
+			pstmt.setInt(1, artikelnr);
 			pstmt.executeUpdate();
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-
 import bean.KontaktBean;
 
 /**
@@ -47,10 +46,10 @@ public class KontaktSehenServlet extends HttpServlet {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		KontaktBean kontakte = read(id);
 
-		request.setAttribute("myKontakt", kontakte);
+		request.setAttribute("kontakte", kontakte);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kontaktformular.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kontaktSehen.jsp");
 		dispatcher.forward(request, response);
 	}
 

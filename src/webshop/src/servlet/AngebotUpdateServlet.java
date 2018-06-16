@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.AngeboteBean;
+
+import bean.ProduktBean;
 
 /**
  * Servlet implementation class AngebotUpdateServlet
@@ -40,19 +41,20 @@ public class AngebotUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		AngeboteBean angebot = new AngeboteBean();
-		angebot.setArtikelnr(Integer.valueOf(request.getParameter("artikelnr")));
-		angebot.setKategorieName(request.getParameter("kategorieName"));
-		angebot.setAngebot(Boolean.valueOf(request.getParameter("angebot")));
+		String name = request.getParameter("kategorieName");
+		ProduktBean produkt = new ProduktBean();
+		produkt.setArtikelnr(Integer.valueOf(request.getParameter("artikelnr")));
+		//produkt.setKategorieName(request.getParameter("kategorieName"));
+		produkt.setAngebot(Boolean.valueOf(request.getParameter("angebot")));
 
 		// DB-Zugriff
-		persist(angebot);
+		persist(produkt, name);
 
 		// Scope "Request"
-		request.setAttribute("angebot", angebot);
+		request.setAttribute("angebot", produkt);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/angebotUpdate.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminAngebot.html");
 		dispatcher.forward(request, response);
 
 	}
@@ -67,11 +69,11 @@ public class AngebotUpdateServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void persist(AngeboteBean a) throws ServletException {
+	private void persist(ProduktBean p, String name) throws ServletException {
 
 		try (Connection con = ds.getConnection(); final Statement stmt = con.createStatement()) {
-			stmt.executeUpdate("UPDATE  " + a.getKategorieName() + " SET angebot = " + a.isAngebot()
-					+ " WHERE artikelnr = " + a.getArtikelnr().toString());
+			stmt.executeUpdate("UPDATE  " + name + " SET angebot = " + p.isAngebot()
+					+ " WHERE artikelnr = " + p.getArtikelnr());
 
 			// try (
 			//// Datenbankabfrage fehlt

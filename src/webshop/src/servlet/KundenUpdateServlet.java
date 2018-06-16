@@ -48,7 +48,7 @@ public class KundenUpdateServlet extends HttpServlet {
 		request.setAttribute("myKunde", kunde);
 
 		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenUpdate.jsp");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminKunden.html");
 		dispatcher.forward(request, response);
 	}
 

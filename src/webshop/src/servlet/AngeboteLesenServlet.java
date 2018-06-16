@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,11 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-
 import bean.ProduktBean;
 
-@WebServlet("/AngeboteLesen")
-public class AngeboteLesen extends HttpServlet {
+@WebServlet("/AngeboteLesenServlet")
+public class AngeboteLesenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup = "jdbc/MyTHIPool")
@@ -29,13 +29,15 @@ public class AngeboteLesen extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
+		List<ProduktBean> angebote = new ArrayList<ProduktBean>();
+		angebote = read();
+		request.setAttribute("angebote", angebote);
 
-		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
-		angebot = read();
-		request.setAttribute("angebot", angebot);
+		// request.getRequestDispatcher("jsp/angeboteLesen.jsp").include(request,
+		// response);
 
-		request.getRequestDispatcher("angebote.jsp").include(request, response);
-
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/angeboteSehen.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private List<ProduktBean> read() throws ServletException {
@@ -43,17 +45,18 @@ public class AngeboteLesen extends HttpServlet {
 		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						
-						"SELECT bildId, name FROM smartphones WHERE angebot = true UNION ALL (SELECT bildID, name FROM kameras WHERE angebot = true)"
-								+ "UNION ALL (SELECT bildId, name FROM notebooks WHERE angebot = true) UNION ALL (SELECT bildId, name FROM fernseher WHERE angebot = true);")) {
 
-		
+						"SELECT bildId, name, artikelnr FROM smartphones WHERE angebot = true UNION ALL (SELECT bildID, name, artikelnr FROM kameras WHERE angebot = true)"
+								+ "UNION ALL (SELECT bildId, name, artikelnr FROM notebooks WHERE angebot = true) UNION ALL (SELECT bildId, name, artikelnr FROM fernseher WHERE angebot = true);")) {
+
+			// pstmt.setString(1, "");
 			try (ResultSet rs = pstmt.executeQuery()) {
 
 				while (rs.next()) {
 					ProduktBean s = new ProduktBean();
-					s.setName(rs.getString("name"));
 					s.setBildID(rs.getInt("bildID"));
+					s.setName(rs.getString("name"));
+					s.setArtikelnr(rs.getInt("artikelnr"));
 					angebot.add(s);
 
 				}

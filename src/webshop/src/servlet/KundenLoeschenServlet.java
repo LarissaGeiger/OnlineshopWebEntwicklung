@@ -36,8 +36,10 @@ public class KundenLoeschenServlet extends HttpServlet {
 		// Scope "Request"
 		request.setAttribute("myKunde", id);
 		
-		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenLoeschen.jsp");
+//		// Weiterleiten an JSP
+//		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenLoeschen.jsp");
+
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminKunden.html");
 		dispatcher.forward(request, response);	
 	}
 
