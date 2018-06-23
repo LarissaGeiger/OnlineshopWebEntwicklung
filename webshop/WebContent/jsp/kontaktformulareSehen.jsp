@@ -10,7 +10,7 @@
 <title>Administrationsoberfläche</title>
 </head>
 <body>
-	<h3>Ergebnis der Kontakformularsuche:</h3>
+	<h3>Alle eingegangenen Kontakformulare:</h3>
 
 	<table>
 		<tr>
@@ -36,6 +36,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="../html/admin/adminKontakt.html">Zurück</a>
+
 </body>
 </html>
