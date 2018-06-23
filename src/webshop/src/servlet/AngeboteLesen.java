@@ -15,8 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-
-import bean.ProduktBean;
+import bean.AngeboteBean;
 
 @WebServlet("/AngeboteLesen")
 public class AngeboteLesen extends HttpServlet {
@@ -30,7 +29,7 @@ public class AngeboteLesen extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 
-		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
+		List<AngeboteBean> angebot = new ArrayList<AngeboteBean>();
 		angebot = read();
 		request.setAttribute("angebot", angebot);
 
@@ -38,22 +37,25 @@ public class AngeboteLesen extends HttpServlet {
 
 	}
 
-	private List<ProduktBean> read() throws ServletException {
+	private List<AngeboteBean> read() throws ServletException {
 
-		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
+		List<AngeboteBean> angebot = new ArrayList<AngeboteBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						
-						"SELECT bildId, name FROM smartphones WHERE angebot = true UNION ALL (SELECT bildID, name FROM kameras WHERE angebot = true)"
-								+ "UNION ALL (SELECT bildId, name FROM notebooks WHERE angebot = true) UNION ALL (SELECT bildId, name FROM fernseher WHERE angebot = true);")) {
+						// Eig müssten die Kategorienamen gelesen werden, falls eine neue Kategorie
+						// dabei ist
+						"SELECT bildId, name, pageName, kategorieID FROM smartphones WHERE angebot = true UNION ALL (SELECT bildID, name, pageName, kategorieID FROM kameras WHERE angebot = true)"
+								+ "UNION ALL (SELECT bildId, name, pageName, kategorieID FROM notebooks WHERE angebot = true) UNION ALL (SELECT bildId, name, pageName, kategorieID FROM fernseher WHERE angebot = true);")) {
 
-		
+			// pstmt.setString(1, "");
 			try (ResultSet rs = pstmt.executeQuery()) {
 
 				while (rs.next()) {
-					ProduktBean s = new ProduktBean();
+					AngeboteBean s = new AngeboteBean();
 					s.setName(rs.getString("name"));
 					s.setBildID(rs.getInt("bildID"));
+					s.setPageName(rs.getString("pageName"));
+					s.setKategorieID(rs.getInt("kategorieID"));
 					angebot.add(s);
 
 				}
