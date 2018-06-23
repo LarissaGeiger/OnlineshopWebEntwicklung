@@ -57,19 +57,9 @@
 	- kontakformularServlet
 	- kontakBean
 	- kontakformular.jsp
-- Admin 
-	- adminKunden
-		- sehen Kunden mit KundenSehenServlet, kunden.jsp, kundenFehler.jsp
-		- loeschen Kunden mit KundenLoeschenServlet, kundenLoeschen.jsp
-		- update Kunden mit KundenUpdateServlet, kundenUpdate.jsp
-	- adminKategorie
-	- adminKontakt
-		- sehen Kontakt mit KontakformulareSehenServlet (alle), KontaktSehenServlet (mit id), kontakformular.jsp (mit id), kontakformulareSehen.jsp (alle)
-		- loeschen Kontatk mit KontaktformularLoeschenServlet, kontaktformularLoeschen.jsp
-	- adminAngebot
 
 
-
+nav muss noch auf allen Seiten gleich gemacht werden -> Test auf index.html
  -->
 
 
@@ -78,15 +68,26 @@
 	<header>
 		<h1>Pluto - Ihr Elektronikfachmarkt in der Nähe</h1>
 		<p>
-			<input type="text" name="suchfeld" maxlength="50"
+			<input type="text" name="suchfeld" size="70" maxlength="50"
 				placeholder="Geben Sie hier Ihren Suchbegriff ein">
 		</p>
-
+		<!-- <select name="Kategorie wählen">
+			<c:forEach items="${kategorie}" var="parameter">
+				<option value="${parameter}"><a href="${parameter.name}" ></a></option>
+			</c:forEach>
+			
+		</select> -->
 		<nav>
-			<select name="Kategorie wählen">
-				<c:forEach items="${kategorie}" var="parameter">
-					<option value="${parameter}">${parameter.name}</option>
-				</c:forEach>
-			</select> <a href="html/anmeldung.html">Anmelden</a>
+			<!--https://www.w3schools.com/howto/howto_css_dropdown.asp -->
+			<div class="dropdown">
+				<button class="dropdown">Kategorie wählen</button>
+				<div class="dropdown-content">
+					<c:forEach items="${kategorie}" var="parameter">
+						<a href="Titel?titel=${parameter.name}">${parameter.name} </a>
+					</c:forEach>
+				</div>
+			</div>
+			<!-- Ende  -->
 		</nav>
+		<a href="html/anmeldung.html">Anmelden</a>
 	</header>

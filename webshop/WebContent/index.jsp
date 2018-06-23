@@ -2,36 +2,38 @@
 <jsp:include page="KategorieLesen" />
 
 <!--jsp:include page="header.jsp" -->
-<article>
-
+<div>
 	<h2>Tagesaktuelle Angebote</h2>
+	<!--<c:forEach items="${angebot}" var="parameter">
+		<th>c:out value ${parameter.angebot}</th>
+	</c:forEach>-->
+
 	<jsp:include page="AngeboteLesen" />
 
-
 	<h3>Unsere Kategorien für Sie</h3>
-
 	<table>
-		<!-- Ist Unterteilung in thead und tbody sinnvoll? -->
+		<!-- Tabelle 4x2 -->
 		<thead>
 			<tr>
-				<c:forEach items="${kategorie}" var="parameter">
-					<th><a href="html/${parameter.name}.jsp">Im Bereich
+
+
+				<c:forEach items="${sessionScope.kategorie}" var="parameter">
+					<th><a href="Titel?titel=${parameter.name}">Im Bereich
 							${parameter.name}</a></th>
 				</c:forEach>
+
 
 
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<c:forEach items="${kategorie}" var="parameter">
+				<c:forEach items="${sessionScope.kategorie}" var="parameter">
 					<td><img src="BilderLesenServlet?id=${parameter.bildID}"
 						width="213" height="162"></td>
 				</c:forEach>
-
-
 			</tr>
 		</tbody>
 	</table>
-</article>
+</div>
 <jsp:include page="footer.jsp" />
