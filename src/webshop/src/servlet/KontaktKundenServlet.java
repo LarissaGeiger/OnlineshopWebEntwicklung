@@ -3,6 +3,9 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -13,13 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.ProduktBean;
+import bean.KategorieBean;
+import bean.KontaktBean;
 
 /**
- * Servlet implementation class AngebotUpdateServlet
+ * Servlet implementation class AngeboteSehenServlet
  */
-@WebServlet("/AngebotUpdateServlet")
-public class AngebotUpdateServlet extends HttpServlet {
+@WebServlet("/KontaktKundenServlet")
+public class KontaktKundenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Resource(lookup = "jdbc/MyTHIPool")
 	private DataSource ds;
@@ -27,7 +31,7 @@ public class AngebotUpdateServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AngebotUpdateServlet() {
+	public KontaktKundenServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -38,21 +42,16 @@ public class AngebotUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 
-		String kategorieName = request.getParameter("kategorieName");
+		List<KontaktBean> kontakte = new ArrayList<KontaktBean>();
+		kontakte = read();
+		request.setAttribute("kontakte", kontakte);
 
-		ProduktBean produkt = new ProduktBean();
-		produkt.setArtikelnr(Integer.valueOf(request.getParameter("artikelnr")));
-		produkt.setAngebot(Boolean.valueOf(request.getParameter("angebot")));
 
-		persist(produkt, kategorieName);
-
-		request.setAttribute("angebot", produkt);
-
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminAngebot.html");
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kontaktformulareSehen.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 	/**
@@ -65,18 +64,33 @@ public class AngebotUpdateServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void persist(ProduktBean p, String name) throws ServletException {
+	private List<KontaktBean> read() throws ServletException {
+		List<KontaktBean> kontakte = new ArrayList<KontaktBean>();
 
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con
-						.prepareStatement("UPDATE " + name + " SET angebot = ? WHERE artikelnr = ?")) {
+				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM kontakt INNER JOIN customer ON kontakt.email = customer.email")) {
 
-			pstmt.setBoolean(1, p.isAngebot());
-			pstmt.setInt(2, p.getArtikelnr());
+			try (ResultSet rs = pstmt.executeQuery()) {
 
-			pstmt.executeUpdate();
+				while (rs.next()) {
+					KontaktBean k = new KontaktBean();
+					k.setId(rs.getInt("id"));
+					k.setVorname(rs.getString("vorname"));
+					k.setNachname(rs.getString("nachname"));
+					k.setEmail(rs.getString("email"));
+					k.setUsereingabe(rs.getString("usereingabe"));
+					k.setGeschlecht(rs.getString("geschlecht"));
+					kontakte.add(k);
+
+				}
+
+			}
+
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
+
+		return kontakte;
 	}
+
 }

@@ -65,10 +65,10 @@ public class KontaktformularServlet extends HttpServlet {
 		kontakt.setUsereingabe(request.getParameter("usereingabe"));
 		persist(kontakt);
 
-		// Scope "Request"
+
 		request.setAttribute("myKontakt", kontakt);
 
-		// Weiterleiten an JSP
+		// richtige Seite fehlt noch 
 		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kontaktformular.jsp");
 		dispatcher.forward(request, response);
 	}

@@ -32,13 +32,13 @@ public class KontaktformularLoeschenServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
-		// DB-Zugriff
+
 		delete(id);
 
-		// Scope "Request"
+
 		request.setAttribute("kontakt", id);
 
-		// Weiterleiten an JSP
+
 		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminKontakt.html");
 		dispatcher.forward(request, response);
 	}

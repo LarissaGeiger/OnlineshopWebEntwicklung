@@ -45,9 +45,11 @@ public class KundenSehenServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String nachname = request.getParameter("nachname");
-		// Integer id = Integer.valueOf(request.getParameter("id"));
+
 		List<KundeBean> kunden = read(nachname);
-		// DB-Zugriff
+		
+		
+		//nochmal überarbeiten
 		if (kunden.isEmpty()) {
 			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenFehler.jsp");
 			dispatcher.forward(request, response);

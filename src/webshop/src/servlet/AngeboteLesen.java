@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.AngeboteBean;
+import bean.ProduktBean;
 
 @WebServlet("/AngeboteLesen")
 public class AngeboteLesen extends HttpServlet {
@@ -28,8 +28,7 @@ public class AngeboteLesen extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-
-		List<AngeboteBean> angebot = new ArrayList<AngeboteBean>();
+		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
 		angebot = read();
 		request.setAttribute("angebot", angebot);
 
@@ -37,21 +36,19 @@ public class AngeboteLesen extends HttpServlet {
 
 	}
 
-	private List<AngeboteBean> read() throws ServletException {
+	private List<ProduktBean> read() throws ServletException {
 
-		List<AngeboteBean> angebot = new ArrayList<AngeboteBean>();
+		List<ProduktBean> angebot = new ArrayList<ProduktBean>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						// Eig müssten die Kategorienamen gelesen werden, falls eine neue Kategorie
-						// dabei ist
+
 						"SELECT bildId, name, pageName, kategorieID FROM smartphones WHERE angebot = true UNION ALL (SELECT bildID, name, pageName, kategorieID FROM kameras WHERE angebot = true)"
 								+ "UNION ALL (SELECT bildId, name, pageName, kategorieID FROM notebooks WHERE angebot = true) UNION ALL (SELECT bildId, name, pageName, kategorieID FROM fernseher WHERE angebot = true);")) {
 
-			// pstmt.setString(1, "");
 			try (ResultSet rs = pstmt.executeQuery()) {
 
 				while (rs.next()) {
-					AngeboteBean s = new AngeboteBean();
+					ProduktBean s = new ProduktBean();
 					s.setName(rs.getString("name"));
 					s.setBildID(rs.getInt("bildID"));
 					s.setPageName(rs.getString("pageName"));

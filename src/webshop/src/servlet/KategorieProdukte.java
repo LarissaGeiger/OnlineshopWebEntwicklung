@@ -1,7 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +30,8 @@ public class KategorieProdukte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// request.setCharacterEncoding("UTF-8"); // In diesem Format erwartet das
-		// Servlet jetzt die Formulardaten
+		request.setCharacterEncoding("UTF-8");
+
 		// Scope "Session"
 		HttpSession session = request.getSession();
 
@@ -42,7 +42,6 @@ public class KategorieProdukte extends HttpServlet {
 		session.setAttribute("titel", request.getParameter("titel"));
 		session.setAttribute("produkt", produkt);
 
-		System.out.println("jsp/bilderTest.jsp");
 		request.getRequestDispatcher("jsp/bilderTest.jsp").include(request, response);
 
 	}
@@ -59,30 +58,11 @@ public class KategorieProdukte extends HttpServlet {
 
 				while (rs.next()) {
 					ProduktBean b = new ProduktBean();
-					if (session.getAttribute("titel").equals("Fernseher")) {
 
-						b.setName(rs.getString("name"));
-						b.setBildID(rs.getInt("bildID"));
-						b.setPageName(rs.getString("pageName"));
-						produkt.add(b);
-					} else if (session.getAttribute("titel").equals("Kameras")) {
-						b.setName(rs.getString("name"));
-						b.setBildID(rs.getInt("bildID"));
-						b.setPageName(rs.getString("pageName"));
-						produkt.add(b);
-
-					} else if (session.getAttribute("titel").equals("Smartphones")) {
-						b.setName(rs.getString("name"));
-						b.setBildID(rs.getInt("bildID"));
-						b.setPageName(rs.getString("pageName"));
-						produkt.add(b);
-
-					} else if (session.getAttribute("titel").equals("Notebooks")) {
-						b.setName(rs.getString("name"));
-						b.setBildID(rs.getInt("bildID"));
-						b.setPageName(rs.getString("pageName"));
-						produkt.add(b);
-					}
+					b.setName(rs.getString("name"));
+					b.setBildID(rs.getInt("bildID"));
+					b.setPageName(rs.getString("pageName"));
+					produkt.add(b);
 
 				}
 

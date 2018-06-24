@@ -17,11 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.BilderBean;
-
-/**
- * Servlet implementation class Demo08aServlet
- */
 @WebServlet("/BilderLesenServlet")
 public class BilderLesenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,38 +28,41 @@ public class BilderLesenServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setCharacterEncoding("UTF-8");	
-		// Auskommentierter Code für ID-Suche statt Bez
-//		Integer id = Integer.valueOf(request.getParameter("id"));
-//	
-//		String filename = request.getParameter("filename");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		// Auskommentierter Code für ID-Suche statt Bez u. id
+		// Integer id = Integer.valueOf(request.getParameter("id"));
+		//
+		// String filename = request.getParameter("filename");
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		// DB-Zugriff
 		try (Connection con = ds.getConnection();
-//			 PreparedStatement pstmt = con.prepareStatement("SELECT bez,file FROM bilder WHERE imageFileName = ?") ) {
-//			pstmt.setString(1, filename);
-				 PreparedStatement pstmt = con.prepareStatement("SELECT file FROM bilder WHERE id = ?") ) {
+				// PreparedStatement pstmt = con.prepareStatement("SELECT bez,file FROM bilder
+				// WHERE imageFileName = ?") ) {
+				// pstmt.setString(1, filename);
+				PreparedStatement pstmt = con.prepareStatement("SELECT file FROM bilder WHERE id = ?")) {
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
-			
+
 				if (rs != null && rs.next()) {
-//					String bez = rs.getString("bez");
+					// String bez = rs.getString("bez");
 					Blob file = rs.getBlob("file");
 					response.reset();
 					long length = file.length();
 					response.setContentType("application/octet-stream");
-					response.setHeader("Content-Length",String.valueOf(length));
-					
-//					response.setHeader("Content-Disposition", "attachment; filename=\"" + bez + "\"");
+					response.setHeader("Content-Length", String.valueOf(length));
+
+					// response.setHeader("Content-Disposition", "attachment; filename=\"" + bez +
+					// "\"");
 					response.setHeader("Content-Disposition", "attachment; filename=\"" + id + "\"");
 					try (InputStream in = file.getBinaryStream()) {
 						final int bufferSize = 256;
 						byte[] buffer = new byte[bufferSize];
-						
+
 						ServletOutputStream out = response.getOutputStream();
 						while ((length = in.read(buffer)) != -1) {
-							out.write(buffer,0,(int) length);
+							out.write(buffer, 0, (int) length);
 						}
 						out.flush();
 					}
@@ -74,7 +72,6 @@ public class BilderLesenServlet extends HttpServlet {
 			throw new ServletException(ex.getMessage());
 		}
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

@@ -30,16 +30,15 @@ public class ProduktDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// request.setCharacterEncoding("UTF-8"); // In diesem Format erwartet das
-		// Servlet jetzt die Formulardaten
+		request.setCharacterEncoding("UTF-8");
+
 		// Scope "Session"
 		HttpSession session = request.getSession();
 		session.setAttribute("pageName", request.getParameter("page"));
 
 		// DB-Zugriff
 		ProduktBean produkt = new ProduktBean();
-		System.out.println(request.getParameter("page"));
-
+		// System.out.println(request.getParameter("page"));
 
 		produkt = read(session, request);
 		session.setAttribute("produktDetail", produkt);
@@ -52,14 +51,13 @@ public class ProduktDetail extends HttpServlet {
 		ProduktBean produkt = new ProduktBean();
 		try (Connection con = ds.getConnection();
 
-				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM "+request.getParameter("titel").toString().toLowerCase()+" WHERE pageName= '"+ session.getAttribute("pageName")+"'")) {
+				PreparedStatement pstmt = con
+						.prepareStatement("SELECT * FROM " + request.getParameter("titel").toString().toLowerCase()
+								+ " WHERE pageName = '" + session.getAttribute("pageName") + "'")) {
 
-			//pstmt.setString(1, session.getAttribute("titel").toString().toLowerCase());
-			//pstmt.setString(2, (String) session.getAttribute("pageName"));
 			try (ResultSet rs = pstmt.executeQuery()) {
 
 				if (rs != null && rs.next()) {
-					// ProduktBean b = new ProduktBean();
 					if (session.getAttribute("titel").equals("Fernseher")) {
 						produkt.setArtikelnr(rs.getInt("artikelnr"));
 						produkt.setName(rs.getString("name"));
@@ -105,6 +103,14 @@ public class ProduktDetail extends HttpServlet {
 						produkt.setArbeitsspeicher(rs.getInt("arbeitsspeicher"));
 						produkt.setBildID(rs.getInt("bildID"));
 						produkt.setPageName(rs.getString("pageName"));
+					} 
+					
+					
+					
+					//test 
+					else {
+						produkt.setArtikelnr(000);
+						
 					}
 
 				}

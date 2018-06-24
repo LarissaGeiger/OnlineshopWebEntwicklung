@@ -49,9 +49,10 @@ public class ProduktServlet extends HttpServlet {
 		produkt.setMarke(request.getParameter("marke"));
 		produkt.setName(request.getParameter("name"));
 		produkt.setPreis(Double.valueOf(request.getParameter("preis")));
+		produkt.setPageName(request.getParameter("pageName"));
 
 		BilderBean bild = new BilderBean();
-		bild.setBez(request.getParameter("bez"));
+		bild.setBez(request.getParameter("pageName"));
 		Part filepart = request.getPart("image");
 		bild.setImageFileName(filepart.getSubmittedFileName());
 
@@ -71,32 +72,7 @@ public class ProduktServlet extends HttpServlet {
 
 		read(produkt, kategorieName);
 
-		// if (kategorieName == "fernseher") {
-		// produkt.setDisplaytech(request.getParameter("displaytech"));
-		// produkt.setBildschirmdiagonale(Double.valueOf(request.getParameter("bildschirmdia")));
-		// } else
-		//
-		// if (kategorieName == "kameras") {
-		// produkt.setModell(request.getParameter("modell"));
-		// produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-		// produkt.setSensorauflösung(Integer.valueOf(request.getParameter("sensorauflösung")));
-		//
-		// } else
-		//
-		// if (kategorieName == "smartphones") {
-		// produkt.setSpeicherplatz(Integer.valueOf(request.getParameter("speicherplatz")));
-		// produkt.setBetriebssystem(request.getParameter("betriebssystem"));
-		// produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-		//
-		// }
-		// // notebooks
-		// else {
-		// produkt.setArbeitsspeicher(Integer.valueOf(request.getParameter("arbeitsspeicher")));
-		// produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-		// produkt.setBetriebssystem(request.getParameter("betriebssystem"));
-		//
-		// }
-
+		
 		if (produkt.getKategorieID() == 1) {
 			produkt.setDisplaytech(request.getParameter("displaytech"));
 			produkt.setBildschirmdiagonale(Double.valueOf(request.getParameter("bildschirmdia")));
@@ -161,8 +137,8 @@ public class ProduktServlet extends HttpServlet {
 		String[] generatedKeys = new String[] { "artikelnr" };
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"INSERT INTO fernseher (artikelnr, angebot,  bildschirmdiagonale, displaytech, farbe, marke,  name, preis, bildID, kategorieID) "
-								+ "VALUES (?,?,?,?,?,?,?,?,?,?)",
+						"INSERT INTO fernseher (artikelnr, angebot,  bildschirmdiagonale, displaytech, farbe, marke,  name, preis, bildID, kategorieID, pageName) "
+								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
 						generatedKeys)) {
 
 			pstmt.setInt(1, produkt.getArtikelnr());
@@ -175,7 +151,7 @@ public class ProduktServlet extends HttpServlet {
 			pstmt.setDouble(8, produkt.getPreis());
 			pstmt.setInt(9, produkt.getBildID());
 			pstmt.setInt(10, produkt.getKategorieID());
-
+			pstmt.setString(11, produkt.getPageName());
 			pstmt.executeUpdate();
 
 			try (ResultSet rs = pstmt.getGeneratedKeys()) {
@@ -196,8 +172,8 @@ public class ProduktServlet extends HttpServlet {
 		String[] generatedKeys = new String[] { "artikelnr" };
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"INSERT INTO kameras (artikelnr, angebot,  sensorauflösung, modell, farbe, marke,  name, preis, bildID, kategorieID, displaygröße) "
-								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+						"INSERT INTO kameras (artikelnr, angebot,  sensorauflösung, modell, farbe, marke,  name, preis, bildID, kategorieID, displaygröße, pageName) "
+								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
 						generatedKeys)) {
 
 			pstmt.setInt(1, produkt.getArtikelnr());
@@ -211,6 +187,7 @@ public class ProduktServlet extends HttpServlet {
 			pstmt.setInt(9, produkt.getBildID());
 			pstmt.setInt(10, produkt.getKategorieID());
 			pstmt.setDouble(11, produkt.getDisplaygröße());
+			pstmt.setString(12, produkt.getPageName());
 
 			pstmt.executeUpdate();
 
@@ -232,8 +209,8 @@ public class ProduktServlet extends HttpServlet {
 		String[] generatedKeys = new String[] { "artikelnr" };
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"INSERT INTO smartphones (artikelnr, angebot,  speicherplatz, betriebssystem, farbe, marke,  name, preis, bildID, kategorieID, displaygröße) "
-								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+						"INSERT INTO smartphones (artikelnr, angebot,  speicherplatz, betriebssystem, farbe, marke,  name, preis, bildID, kategorieID, displaygröße, pageName) "
+								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
 						generatedKeys)) {
 
 			pstmt.setInt(1, produkt.getArtikelnr());
@@ -247,7 +224,7 @@ public class ProduktServlet extends HttpServlet {
 			pstmt.setInt(9, produkt.getBildID());
 			pstmt.setInt(10, produkt.getKategorieID());
 			pstmt.setDouble(11, produkt.getDisplaygröße());
-
+			pstmt.setString(12, produkt.getPageName());
 			pstmt.executeUpdate();
 
 			try (ResultSet rs = pstmt.getGeneratedKeys()) {
@@ -268,8 +245,8 @@ public class ProduktServlet extends HttpServlet {
 		String[] generatedKeys = new String[] { "artikelnr" };
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"INSERT INTO notebooks (artikelnr, angebot,  arbeitsspeicher, betriebssystem, farbe, marke,  name, preis, bildID, kategorieID, displaygröße) "
-								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+						"INSERT INTO notebooks (artikelnr, angebot,  arbeitsspeicher, betriebssystem, farbe, marke,  name, preis, bildID, kategorieID, displaygröße, pageName) "
+								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
 						generatedKeys)) {
 
 			pstmt.setInt(1, produkt.getArtikelnr());
@@ -283,7 +260,8 @@ public class ProduktServlet extends HttpServlet {
 			pstmt.setInt(9, produkt.getBildID());
 			pstmt.setInt(10, produkt.getKategorieID());
 			pstmt.setDouble(11, produkt.getDisplaygröße());
-
+			pstmt.setString(12, produkt.getPageName());
+			
 			pstmt.executeUpdate();
 
 			try (ResultSet rs = pstmt.getGeneratedKeys()) {
