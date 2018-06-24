@@ -7,70 +7,47 @@
 
 </head>
 <body>
-
+	<!-- prüfen, ob id existiert
+prüfen, ob Eingaben richtiges Format hat -->
 
 	<form method="post" action="../../KundenUpdateServlet">
 		<fieldset>
 			<legend>Kundendaten aktualisieren:</legend>
 			<div>
-				<label>ID:</label> <input name="id" type="number" required>
+				<label>ID:</label> <input name="id" id="id" type="number" required>
+				<span></span>
 			</div>
-
-			<!-- <div>
-				<label>Vorname:</label> <input name="vorname" type="text"
-					maxlength="50" required><label for="firstname"></label>
-			</div>
-			<div>
-				<label>Nachname:</label> <input name="nachname" type="text"
-					maxlength="50" required><label for="lastname"></label>
-			</div> -->
 			<div>
 				<label>Geburtsdatum:</label> <input name="geburtsdatum" type="date"
-					required value="01.01.2018"
+					id="gebdatum" value="01.01.2018"
 					pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$">
-				<label for="geburtsdatum"></label>
-
-			</div>
-			<!-- <div>
-				<label>Email:</label><input name="email" type="email" maxlength="50"
-					required><label for="email"></label>
 			</div>
 			<div>
-				<label>Passwort:</label> <input name="passwort" type="password"
-					min="13" maxlength="20"><label for="password"></label>
-
-			</div> -->
-
-			<div>
-
 				<label>Telefonnummer:</label> <input name="telefonnummer" type="tel"
-					maxlength="20"><label for="telefonnummer"></label>
+					id="telnr" maxlength="50">
 			</div>
 			<div>
-				<label>Straße:</label><input name="straße" type="text"
-					maxlength="40"><label for="straße"></label>
-
+				<label>Straße:</label><input name="straße" type="text" id="straße"
+					maxlength="50">
 			</div>
-
 			<div>
 				<label>Hausnummer:</label><input name="hausnummer" type="number"
-					maxlength="4"><label for="hausnummer"></label>
-
+					id="hausnr" min="1">
 			</div>
 			<div>
 				<label>Postleitzahl:</label><input name="postleitzahl" type="number"
-					maxlength="5"><label for="postleitzahl"></label>
-
+					id="plz" min="01000" max="99999">
 			</div>
 			<div>
-				<label>Ort:</label><input name="ort" type="text" maxlength="30"><label
-					for="ort"></label>
-
+				<label>Ort:</label><input name="ort" type="text" maxlength="50"
+					id="ort">
 			</div>
 
 			<p>(*) = Eingabe erforderlich</p>
 
-			<button type="submit" id="button">Aktualisieren</button>
+			<div>
+				<button type="submit" id="button">Aktualisieren</button>
+			</div>
 		</fieldset>
 	</form>
 

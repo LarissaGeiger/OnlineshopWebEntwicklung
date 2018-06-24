@@ -5,171 +5,107 @@
 <title>Produkt anlegen</title>
 <link rel="stylesheet" href="../../css/adminForm.css">
 
-<script>
-	document.addEventListener("DOMContentLoaded", init);
-
-	function init() {
-
-		var element = document.getElementById("fernseher");
-		element.addEventListener("change", eingabefeld);
-		element = document.getElementById("kameras");
-		element.addEventListener("change", eingabefeld);
-		element = document.getElementById("smartphones");
-		element.addEventListener("change", eingabefeld);
-		element = document.getElementById("notebooks");
-		element.addEventListener("change", eingabefeld);
-	}
-
-	function eingabefeld() {
-
-		document.getElementById("modell").disabled = document
-				.getElementById("fernseher").checked;
-		document.getElementById("displaygröße").disabled = document
-				.getElementById("fernseher").checked;
-		document.getElementById("sensorauflösung").disabled = document
-				.getElementById("fernseher").checked;
-		document.getElementById("speicherplatz").disabled = document
-				.getElementById("fernseher").checked;
-		document.getElementById("betriebssystem").disabled = document
-				.getElementById("fernseher").checked;
-		document.getElementById("arbeitsspeicher").disabled = document
-				.getElementById("fernseher").checked;
-
-		document.getElementById("speicherplatz").disabled = document
-				.getElementById("kameras").checked;
-		document.getElementById("betriebssystem").disabled = document
-				.getElementById("kameras").checked;
-		document.getElementById("arbeitsspeicher").disabled = document
-				.getElementById("kameras").checked;
-		document.getElementById("displaytech").disabled = document
-				.getElementById("kameras").checked;
-		document.getElementById("bildschirmdia").disabled = document
-				.getElementById("kameras").checked;
-
-		document.getElementById("modell").disabled = document
-				.getElementById("smartphones").checked;
-		document.getElementById("sensorauflösung").disabled = document
-				.getElementById("smartphones").checked;
-		document.getElementById("arbeitsspeicher").disabled = document
-				.getElementById("smartphones").checked;
-		document.getElementById("displaytech").disabled = document
-				.getElementById("smartphones").checked;
-		document.getElementById("bildschirmdia").disabled = document
-				.getElementById("smartphones").checked;
-
-		document.getElementById("modell").disabled = document
-				.getElementById("notebooks").checked;
-		document.getElementById("sensorauflösung").disabled = document
-				.getElementById("notebooks").checked;
-		document.getElementById("speicherplatz").disabled = document
-				.getElementById("notebooks").checked;
-		document.getElementById("displaytech").disabled = document
-				.getElementById("notebooks").checked;
-		document.getElementById("bildschirmdia").disabled = document
-				.getElementById("notebooks").checked;
-
-	}
-</script>
-
-
 
 </head>
 <body>
 
+	<!-- 	prüfen, ob es Artikelnummer schon gibt, 
+	richtiges disabeln bei einzelnen Produkten fehlt
+	 -->
 
 	<form method="post" enctype="multipart/form-data"
 		action="../../ProduktServlet">
 		<fieldset>
-			<legend>Bitte pflegen Sie hier ein Produkt eine Kategorie
-				ein:</legend>
+			<legend>Produkt hinzufügen:</legend>
 			<div>
-				<label>Wählen Sie zuerst eine Kategorie aus:</label><input
-					id="fernseher" name="kategorieName" type="radio" value="fernseher"><label
+				<label>Kategorie wählen:</label><input id="fernseher"
+					name="kategorieName" type="radio" value="fernseher" checked><label
 					for="fernseher">Fernseher</label> <input id="kameras"
 					name="kategorieName" type="radio" value="kameras"><label
-					for="kameras">Kameras</label> <input id="smartphones"
-					name="kategorieName" type="radio" value="smartphones"><label
-					for="smartphones">Smartphones</label> <input id="notebooks"
+					for="kameras">Kameras</label> <input id="notebooks"
 					name="kategorieName" type="radio" value="notebooks"><label
-					for="notebooks">Notebooks</label>
+					for="notebooks">Notebooks</label> <input id="smartphones"
+					name="kategorieName" type="radio" value="smartphones"><label
+					for="smartphones">Smartphones</label>
 			</div>
 
 			<div>
 				<label>Name:</label><input name="name" type="text" id="name"
-					maxlength="50" required>
+					maxlength="30" required><span></span>
 
 			</div>
 			<div>
 				<label>Artikelnummer:</label> <input name="artikelnr" id="artikelnr"
-					type="number" maxlength="50" required>
+					type="number" min="0" required><span></span>
 			</div>
 			<div>
-				<label>Preis:</label> <input name="preis" id="preis" type="number"
-					maxlength="50" required>
+				<label>Preis (in €):</label> <input name="preis" id="preis"
+					type="number" min="0" required><span></span>
 			</div>
 
 			<div>
 				<label>Farbe:</label> <input name="farbe" id="farbe" type="text"
-					maxlength="50" required>
+					maxlength="30" required> <span></span>
 			</div>
 
 			<div>
 				<label>Marke:</label> <input name="marke" id="marke" type="text"
-					maxlength="50" required>
+					maxlength="50" required><span></span>
 			</div>
 
 			<div>
 				<label>Produktbild hochladen:</label> <input type="file"
-					name="image" id="image" accept="image/*" required>
+					name="image" id="image" accept="image/*" required><span></span>
 			</div>
 			<div>
-				<label>Name des Produktbildes</label><input type="text" name="bez"
-					id="bez" required>
+				<label>Name der Produktseite</label><input type="text" name="pageName"
+					id="pageName" required><span></span>
 			</div>
 			<div>
 				<label>Displaytechnologie:</label> <input name="displaytech"
-					id="displaytech" type="text" maxlength="50" required>
+					id="displaytech" type="text" maxlength="50">
 			</div>
 
 			<div>
-				<label>Bildschirmdiagonale:</label> <input name="bildschirmdia"
-					id="bildschirmdia" type="number" maxlength="50" required>
+				<label>Bildschirmdiagonale (in Zoll):</label> <input
+					name="bildschirmdia" id="bildschirmdia" type="number" min="0">
 			</div>
 
 			<div>
-				<label>Betriebssystem:</label> <input name="betriebssystem"
-					id="betriebssystem" type="text" maxlength="50" required>
+				<label>Betriebssystem:</label> <input name="betriebssystem" disabled
+					id="betriebssystem" type="text" maxlength="50">
 			</div>
 
 			<div>
-				<label>Speicherplatz:</label> <input name="speicherplatz"
-					id="speicherplatz" type="number" maxlength="50" required>
+				<label>Speicherplatz (in GB):</label> <input name="speicherplatz"
+					disabled id="speicherplatz" type="number" min="0">
 			</div>
 
 			<div>
-				<label>Arbeitsspeicher:</label> <input name="arbeitsspeicher"
-					id="arbeitsspeicher" type="number" maxlength="50" required>
+				<label>Arbeitsspeicher (in GB):</label> <input
+					name="arbeitsspeicher" disabled id="arbeitsspeicher" type="number"
+					min="0">
 			</div>
 
 			<div>
-				<label>Displaygröße:</label> <input name="displaygröße"
-					id="displaygröße" type="number" maxlength="50" required>
+				<label>Displaygröße (in Zoll):</label> <input name="displaygröße"
+					disabled id="displaygröße" type="number" min="0">
 			</div>
 
 			<div>
-				<label>Sensorauflösung:</label> <input name="sensorauflösung"
-					id="sensorauflösung" type="number" maxlength="50" required>
+				<label>Sensorauflösung (in Pixel):</label> <input
+					name="sensorauflösung" disabled id="sensorauflösung" type="number"
+					min="0">
 			</div>
 
 			<div>
 				<label>Modell:</label> <input name="modell" id="modell" type="text"
-					maxlength="50" required>
+					disabled maxlength="50">
 			</div>
 
-
-
-
-			<button type="submit" id="button">Hinzufügen</button>
+			<div>
+				<button type="submit" id="button">Hinzufügen</button>
+			</div>
 		</fieldset>
 	</form>
 

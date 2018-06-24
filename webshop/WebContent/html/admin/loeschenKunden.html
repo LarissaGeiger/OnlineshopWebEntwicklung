@@ -7,17 +7,21 @@
 
 </head>
 <body>
+	<!-- prüfen, ob es ID gibt -->
 
 	<form method="post" action="../../KundenLoeschenServlet">
 		<fieldset>
-			<legend>Kunden ID eingeben:</legend>
+			<legend>Kunden löschen:</legend>
 
 			<div>
-				<input name="id" type="number" required>
+				<label>ID:</label> <input name="id" type="number" id="id" required
+					min="1"> <span></span>
 			</div>
+			<p>(*) = Eingabe erforderlich</p>
 
-			<button type="submit" id="button">löschen</button>
-
+			<div>
+				<button type="submit" id="button">löschen</button>
+			</div>
 		</fieldset>
 
 	</form>

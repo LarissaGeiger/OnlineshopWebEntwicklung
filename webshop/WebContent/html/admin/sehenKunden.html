@@ -7,15 +7,20 @@
 
 </head>
 <body>
-	
+	<!-- 
+prüfen, ob Nachname existiert -->
+
 	<form method="post" action="../../KundenSehenServlet">
 		<fieldset>
 			<legend>Kundendaten suchen</legend>
-			<div> <label>Nachname des Kunden:</label>
-				<input name="nachname" type="text" required>
+			<div>
+				<label>Nachname des Kunden:</label> <input name="nachname" id="nachname"
+					type="text" required> <span></span>
 			</div>
-			<button type="submit" id="button">suchen</button>
-
+			<p>(*) = Eingabe erforderlich</p>
+			<div>
+				<button type="submit" id="button">suchen</button>
+			</div>
 		</fieldset>
 
 	</form>

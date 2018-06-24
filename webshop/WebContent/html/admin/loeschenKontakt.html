@@ -8,18 +8,20 @@
 </head>
 <body>
 
+	<!-- gibt es ID? -->
 
 	<form method="post" action="../../KontaktformularLoeschenServlet">
 		<fieldset>
 			<legend>Kontaktformular löschen:</legend>
 
 			<div>
-				<label>ID des Kontakformulars:</label><input name="id" type="number"
-					required>
+				<label>ID:</label><input name="id" type="number" required min="1" id="id">
+				<span></span>
 			</div>
-
-			<button type="submit" id="button">löschen</button>
-
+			<p>(*) = Eingabe erforderlich</p>
+			<div>
+				<button type="submit" id="button">löschen</button>
+			</div>
 		</fieldset>
 
 	</form>

@@ -7,19 +7,30 @@
 
 </head>
 <body>
+	<!-- prüfen, ob Artikelnummer existiert -->
+
 	<form method="post" action="../../ProduktLoeschenServlet">
 		<fieldset>
 			<legend>Produkt löschen:</legend>
 			<div>
-				<label>Kategorie:</label> <input name="name" type="text"
-					required>
+				<label>Kategorie wählen:</label><input id="fernseher"
+					name="kategorieName" type="radio" value="fernseher" checked><label
+					for="fernseher">Fernseher</label> <input id="kameras"
+					name="kategorieName" type="radio" value="kameras"><label
+					for="kameras">Kameras</label> <input id="notebooks"
+					name="kategorieName" type="radio" value="notebooks"><label
+					for="notebooks">Notebooks</label> <input id="smartphones"
+					name="kategorieName" type="radio" value="smartphones"><label
+					for="smartphones">Smartphones</label>
 			</div>
 			<div>
 				<label>Artikelnummer:</label> <input name="artikelnr" type="number"
-					required>
+					id="artikelnr" min="0" required> <span></span>
 			</div>
-
-			<button type="submit" id="button">Löschen</button>
+			<p>(*) = Eingabe erforderlich</p>
+			<div>
+				<button type="submit" id="button">Löschen</button>
+			</div>
 		</fieldset>
 	</form>
 </body>
