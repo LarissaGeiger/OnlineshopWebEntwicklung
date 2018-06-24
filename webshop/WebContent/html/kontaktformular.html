@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-
 <meta charset="UTF-8">
 <title>Kontaktformular</title>
 <link rel="stylesheet" href="../css/kontaktformular.css">
-
+<script src="js/kontaktformular.js"></script>
 
 </head>
 
 <body>
 
-
-
-	<form method="post" action="../KontaktformularServlet">
+	<form id="kontakt" method="post" action="../KontaktformularServlet"
+		autocomplete="on">
 		<fieldset>
 			<legend>Kontaktformular</legend>
 			<div>
 				<label for="geschlecht"> Geschlecht:</label> <select
-					name="geschlecht" id="geschlecht"><option>Männlich</option>
-					<option>Weiblich</option>
+					name="geschlecht" id="geschlecht"><option value="männlich">Männlich</option>
+					<option value="weiblich">Weiblich</option>
 				</select>
 
 			</div>
+
 			<div>
 				<label for="email"> E-Mail:</label> <input name="email" id="email"
-					type="email" maxlength="30" value="" required><label
-					for="email"></label><span></span>
+					type="email" required><span></span>
 			</div>
 			<div>
 				<label for="vorname"> Vorname:</label> <input name="vorname"
-					id="vorname" type="text" maxlength="40" value="" required><label
-					for="vorname"></label><span></span>
+					id="vorname" type="text" required><span></span>
 			</div>
 			<div>
 				<label for="nachname"> Nachname:</label> <input name="nachname"
-					id="nachname" type="text" maxlength="40" value="" required><label
-					for="nachname"></label><span></span>
+					id="nachname" type="text" required><span></span>
 			</div>
 			<div>
-				<label for="usereingabe" id="eingabe"> Ihre Nachricht an
-					uns:</label>
+				<label for="usereingabe"> Ihre Nachricht an uns:</label>
 				<textarea name="usereingabe" id="usereingabe" rows="10" required></textarea>
-				<label for="usereingabe"></label> <span></span>
+				<span></span>
 			</div>
 			<p>(*) = Eingabe erforderlich</p>
 			<div>
