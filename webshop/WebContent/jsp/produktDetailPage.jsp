@@ -1,3 +1,4 @@
+<!--  Larissa -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -6,7 +7,9 @@
 <meta charset="UTF-8">
 <title>${titel}</title>
 
-<link rel="stylesheet" href="../css/fernseher.css">
+<link rel="stylesheet" href="../css/produktDetailPage.css">
+<script type="text/javascript" src="../js/nav.js"></script>
+
 </head>
 <body>
 	<header>
@@ -17,12 +20,21 @@
 				placeholder="Geben Sie hier Ihren Suchbegriff ein">
 		</p>
 		<nav>
-			<select name="Kategorie wählen">
-				<c:forEach items="${kategorie}" var="parameter">
-					<option value="${parameter}">${parameter.name}</option>
-				</c:forEach>
+			<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar_click -->
+			<div class="dropdown">
+				<button class="dropbtn" onclick="myFunction()">
+					Kategorie wählen <i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content" id="myDropdown">
+					<a href="../index.jsp"> Startseite </a>
 
-			</select>
+					<c:forEach items="${kategorie}" var="parameter">
+						<a href="../Titel?titel=${parameter.name}">${parameter.name} </a>
+					</c:forEach>
+
+				</div>
+			</div>
+			<!-- Ende Kommentar  -->
 		</nav>
 
 	</header>
@@ -31,18 +43,19 @@
 		<a href="../Titel?titel=${titel}">Zurück zur Kategorie ${titel}</a><br>
 
 	</aside>
+<form action ="warenkorb.jsp" method ="get"> 
 
 	<article>
 
 		<jsp:include page="../ProduktDetail" />
 
-		<input type="button" name="Warenkorb" value="In den Warenkorb">
+		<input type="button"  formaction="warenkorb.jsp" name="Warenkorb" value="In den Warenkorb">
+		<a href="../Warenkorbservlet?titel=${titel}&page=${produktDetail.pageName}&name=${produktDetail.name}&preis=${produktDetail.preis}"> In den warenkorb</a>
 
 	</article>
 
 	</main>
+</form>
 
 
-
-			<%@include file="unterkategorieFooter.jspf"%>
-	
+	<%@include file="unterkategorieFooter.jspf"%>
