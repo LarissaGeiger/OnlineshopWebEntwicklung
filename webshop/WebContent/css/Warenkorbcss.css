@@ -1,27 +1,34 @@
-
+/* Hakan Demen*/
 header {
 	background-color: lightblue;
 	text-align: center;
 	padding-top: 2px;
 }
+
 body {
 	padding: 1.5em;
 }
-h1 {
-	text-align: center; 
-	
-	
+
+.wkbilder {
+	width: 8em;
+	height: 5em;
 }
-h2 { 
+
+h1 {
+	text-align: center;
+}
+
+h2 {
 	text-align: center;
 	text-decoration: underline;
 	background-color: #ebebeb;
 }
+
 table {
-		border: 10px solid #ebebeb; 
-		width: 100%; 
-} 
- 
+	border: 10px solid #ebebeb;
+	width: 100%;
+}
+
 nav {
 	text-align: center;
 	background-color: lightcoral;
@@ -33,8 +40,39 @@ footer {
 	background-color: lightcoral;
 }
 
-div {
+#tabellewarenkorb {
 	text-align: center;
-		
 }
 
+.th {
+	font-weight: bold;
+}
+
+#gespreisdick {
+	font-weight: bold;
+}
+
+/* Bestellbestätigung */
+#haken {
+	width: 15em;
+	hight: 15em;
+}
+
+#bbdiv {
+	align: center;
+}
+
+.center {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.hakenbild {
+	text-align: center;
+}
+
+.preisbb {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}
