@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <title>Produkt anlegen</title>
 <link rel="stylesheet" href="../../css/adminForm.css">
-
+<script src="../../js/produkt.js"></script>
 
 </head>
 <body>
 
-	<!-- 	prüfen, ob es Artikelnummer schon gibt, 
-	richtiges disabeln bei einzelnen Produkten fehlt
+	<!-- 	
+	preis soll mit . geteilt sein und max 2 Nachkommastellen (auch bei Zoll zeug mit einer nachkommastelle)
+	alle Strings sollen keine Zahlen sein
 	 -->
 
-	<form method="post" enctype="multipart/form-data"
+	<form method="post" enctype="multipart/form-data" id="produktForm"
 		action="../../ProduktServlet">
 		<fieldset>
 			<legend>Produkt hinzufügen:</legend>
@@ -35,8 +36,9 @@
 
 			</div>
 			<div>
-				<label>Artikelnummer:</label> <input name="artikelnr" id="artikelnr"
-					type="number" min="0" required><span></span>
+				<label>Artikelnummer (max. 7 Stellen):</label> <input
+					name="artikelnr" id="artikelnr" type="number" min="0" max="9999999"
+					required><span></span>
 			</div>
 			<div>
 				<label>Preis (in €):</label> <input name="preis" id="preis"
@@ -58,49 +60,50 @@
 					name="image" id="image" accept="image/*" required><span></span>
 			</div>
 			<div>
-				<label>Name der Produktseite</label><input type="text" name="pageName"
-					id="pageName" required><span></span>
+				<label>Name der Produktseite</label><input type="text"
+					name="pageName" id="pageName" required><span></span>
 			</div>
 			<div>
 				<label>Displaytechnologie:</label> <input name="displaytech"
-					id="displaytech" type="text" maxlength="50">
+					id="displaytech" type="text" maxlength="50" value="">
 			</div>
 
 			<div>
 				<label>Bildschirmdiagonale (in Zoll):</label> <input
-					name="bildschirmdia" id="bildschirmdia" type="number" min="0">
+					name="bildschirmdia" id="bildschirmdia" type="number" min="0"
+					value="">
 			</div>
 
 			<div>
-				<label>Betriebssystem:</label> <input name="betriebssystem" disabled
-					id="betriebssystem" type="text" maxlength="50">
+				<label>Betriebssystem:</label> <input name="betriebssystem" value=""
+					id="betriebssystem" type="text" maxlength="50" disabled>
 			</div>
 
 			<div>
 				<label>Speicherplatz (in GB):</label> <input name="speicherplatz"
-					disabled id="speicherplatz" type="number" min="0">
+					value="" id="speicherplatz" type="number" min="0" disabled>
 			</div>
 
 			<div>
 				<label>Arbeitsspeicher (in GB):</label> <input
-					name="arbeitsspeicher" disabled id="arbeitsspeicher" type="number"
-					min="0">
+					name="arbeitsspeicher" id="arbeitsspeicher" type="number" min="0"
+					value="" disabled>
 			</div>
 
 			<div>
 				<label>Displaygröße (in Zoll):</label> <input name="displaygröße"
-					disabled id="displaygröße" type="number" min="0">
+					value="" id="displaygröße" type="number" min="0" disabled>
 			</div>
 
 			<div>
 				<label>Sensorauflösung (in Pixel):</label> <input
-					name="sensorauflösung" disabled id="sensorauflösung" type="number"
-					min="0">
+					name="sensorauflösung" id="sensorauflösung" type="number" min="0"
+					value="" disabled>
 			</div>
 
 			<div>
 				<label>Modell:</label> <input name="modell" id="modell" type="text"
-					disabled maxlength="50">
+					maxlength="50" value="" disabled>
 			</div>
 
 			<div>

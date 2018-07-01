@@ -7,9 +7,8 @@
 
 </head>
 <body>
-	<!-- prüfen, ob Artikelnummer existiert -->
 
-	<form method="post" action="../../ProduktLoeschenServlet">
+	<form method="post" id="form" action="../../ProduktLoeschenServlet">
 		<fieldset>
 			<legend>Produkt löschen:</legend>
 			<div>
@@ -24,8 +23,9 @@
 					for="smartphones">Smartphones</label>
 			</div>
 			<div>
-				<label>Artikelnummer:</label> <input name="artikelnr" type="number"
-					id="artikelnr" min="0" required> <span></span>
+				<label>Artikelnummer (max. 7 Stellen):</label> <input
+					name="artikelnr" type="number" id="artikelnr" min="1" max="9999999"
+					required> <span></span>
 			</div>
 			<p>(*) = Eingabe erforderlich</p>
 			<div>

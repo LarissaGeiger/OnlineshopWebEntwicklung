@@ -7,40 +7,37 @@
 
 </head>
 <body>
-	<!-- prüfen, ob id existiert
-prüfen, ob Eingaben richtiges Format hat -->
+	<!-- 
+prüfen, ob Eingaben richtiges Format hat 
+HAUSNUMMER-->
 
-	<form method="post" action="../../KundenUpdateServlet">
+	<form method="post" id="form" action="../../KundenUpdateServlet">
 		<fieldset>
 			<legend>Kundendaten aktualisieren:</legend>
 			<div>
-				<label>ID:</label> <input name="id" id="id" type="number" required>
-				<span></span>
+				<label>ID:</label> <input name="id" id="id" min="1" type="number"
+					required> <span></span>
 			</div>
-			<div>
-				<label>Geburtsdatum:</label> <input name="geburtsdatum" type="date"
-					id="gebdatum" value="01.01.2018"
-					pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$">
-			</div>
+
 			<div>
 				<label>Telefonnummer:</label> <input name="telefonnummer" type="tel"
-					id="telnr" maxlength="50">
+					id="telnr" maxlength="50" required>
 			</div>
 			<div>
 				<label>Straße:</label><input name="straße" type="text" id="straße"
-					maxlength="50">
+					maxlength="50" required>
 			</div>
 			<div>
 				<label>Hausnummer:</label><input name="hausnummer" type="number"
-					id="hausnr" min="1">
+					id="hausnummer" min="1" required>
 			</div>
 			<div>
 				<label>Postleitzahl:</label><input name="postleitzahl" type="number"
-					id="plz" min="01000" max="99999">
+					id="postleitzahl" min="01000" max="99999" required>
 			</div>
 			<div>
 				<label>Ort:</label><input name="ort" type="text" maxlength="50"
-					id="ort">
+					id="ort" required>
 			</div>
 
 			<p>(*) = Eingabe erforderlich</p>

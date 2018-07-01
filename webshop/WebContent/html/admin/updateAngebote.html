@@ -2,17 +2,14 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Angeobte aktualisieren</title>
+<title>Angeobt aktualisieren</title>
 <link rel="stylesheet" href="../../css/adminForm.css">
-<script src="../../js/admin.js"></script>
-
 
 </head>
 <body>
 
-	<!-- prüfen, ob es Artikelnummer gibt-->
 
-	<form method="post" action="../../AngebotUpdateServlet">
+	<form method="post" id="formular" action="../../AngebotUpdateServlet">
 		<fieldset>
 			<legend>Produktangebot aktualisieren:</legend>
 			<div>
@@ -28,8 +25,9 @@
 			</div>
 
 			<div>
-				<label>Artikelnummer:</label> <input name="artikelnr" id="artikelnr"
-					type="number" min="1" required> <span></span>
+				<label>Artikelnummer (max. 7 Stellen):</label> <input
+					name="artikelnr" id="artikelnr" type="number" min="1" max="9999999"
+					required> <span></span>
 			</div>
 
 			<div class="angebot">
@@ -40,7 +38,8 @@
 			</div>
 			<p>(*) = Eingabe erforderlich</p>
 			<div>
-				<button type="submit" id="button" onclick="checkForm()">Aktualisieren</button>
+				<button type="submit" id="button">Aktualisieren</button>
+
 			</div>
 		</fieldset>
 	</form>
