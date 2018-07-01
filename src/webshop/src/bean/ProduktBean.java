@@ -1,10 +1,8 @@
 package bean;
 
-import java.io.Serializable;
-
 public class ProduktBean {
 
-	private String titelProdukt;
+	// private String titel;
 	// müssen bei jedem Produkt dabei sein (NOT NULL)
 	private int artikelnr; // primaryKey
 	private String name;
@@ -20,46 +18,28 @@ public class ProduktBean {
 
 	// können bei einem Produkt dabei sein (NULL)
 	private String modell;
+	private int sensorauflösung;
+	private double displaygröße;
+	private int arbeitsspeicher;
 	private double bildschirmdiagonale;
 	private String displaytech;
-	private int gewicht;
 	private String betriebssystem;
 	private int speicherplatz;
-	private int baujahr;
-	private int arbeitsspeicher;
-	private int sensorauflösung;
-	private int leistung;
-	private double länge;
-	private double breite;
-	private String besonderheit;
-	private int modelljahr;
-	private double höhe;
-	private double displaygröße;
 
-	private int anzahl;
 
-	public int getAnzahl() {
-		return anzahl;
+	public ProduktBean(String name, double preis) {
+		this.name = name;
+		this.preis = preis;
+}
+	public ProduktBean() {
+
 	}
-
-	public void setAnzahl(int anzahl) {
-		this.anzahl = anzahl;
-	}
-
 	public String getPageName() {
 		return pageName;
 	}
 
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
-	}
-
-	public int getGewicht() {
-		return gewicht;
-	}
-
-	public void setGewicht(int gewicht) {
-		this.gewicht = gewicht;
 	}
 
 	public String getBetriebssystem() {
@@ -78,14 +58,6 @@ public class ProduktBean {
 		this.speicherplatz = speicherplatz;
 	}
 
-	public int getBaujahr() {
-		return baujahr;
-	}
-
-	public void setBaujahr(int baujahr) {
-		this.baujahr = baujahr;
-	}
-
 	public int getArbeitsspeicher() {
 		return arbeitsspeicher;
 	}
@@ -100,30 +72,6 @@ public class ProduktBean {
 
 	public void setSensorauflösung(int sensorauflösung) {
 		this.sensorauflösung = sensorauflösung;
-	}
-
-	public int getLeistung() {
-		return leistung;
-	}
-
-	public void setLeistung(int leistung) {
-		this.leistung = leistung;
-	}
-
-	public String getBesonderheit() {
-		return besonderheit;
-	}
-
-	public void setBesonderheit(String besonderheit) {
-		this.besonderheit = besonderheit;
-	}
-
-	public int getModelljahr() {
-		return modelljahr;
-	}
-
-	public void setModelljahr(int modelljahr) {
-		this.modelljahr = modelljahr;
 	}
 
 	public boolean isAngebot() {
@@ -214,45 +162,12 @@ public class ProduktBean {
 		this.bildschirmdiagonale = bildschirmdiagonale;
 	}
 
-	public double getLänge() {
-		return länge;
-	}
-
-	public void setLänge(double länge) {
-		this.länge = länge;
-	}
-
-	public double getBreite() {
-		return breite;
-	}
-
-	public void setBreite(double breite) {
-		this.breite = breite;
-	}
-
-	public double getHöhe() {
-		return höhe;
-	}
-
-	public void setHöhe(double höhe) {
-		this.höhe = höhe;
-	}
-
 	public double getDisplaygröße() {
 		return displaygröße;
 	}
 
 	public void setDisplaygröße(double displaygröße) {
 		this.displaygröße = displaygröße;
-	}
-
-	public ProduktBean() {
-
-	}
-
-	public ProduktBean(String name, double preis) {
-		this.name = name;
-		this.preis = preis;
 	}
 
 }
