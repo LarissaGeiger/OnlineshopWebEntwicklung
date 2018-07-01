@@ -1,0 +1,40 @@
+
+header {
+	background-color: lightblue;
+	text-align: center;
+	padding-top: 2px;
+}
+body {
+	padding: 1.5em;
+}
+h1 {
+	text-align: center; 
+	
+	
+}
+h2 { 
+	text-align: center;
+	text-decoration: underline;
+	background-color: #ebebeb;
+}
+table {
+		border: 10px solid #ebebeb; 
+		width: 100%; 
+} 
+ 
+nav {
+	text-align: center;
+	background-color: lightcoral;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+footer {
+	background-color: lightcoral;
+}
+
+div {
+	text-align: center;
+		
+}
+
