@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -25,14 +26,6 @@ public class AngebotUpdateServlet extends HttpServlet {
 	private DataSource ds;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AngebotUpdateServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -46,12 +39,19 @@ public class AngebotUpdateServlet extends HttpServlet {
 		produkt.setArtikelnr(Integer.valueOf(request.getParameter("artikelnr")));
 		produkt.setAngebot(Boolean.valueOf(request.getParameter("angebot")));
 
-		persist(produkt, kategorieName);
+		if (check(kategorieName, produkt.getArtikelnr())) {
+			update(produkt, kategorieName);
 
-		request.setAttribute("angebot", produkt);
+			request.setAttribute("angebot", produkt);
 
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminAngebot.html");
-		dispatcher.forward(request, response);
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/updateAdmin.jsp");
+			dispatcher.forward(request, response);
+
+		} else {
+			request.setAttribute("angebot", produkt.getArtikelnr());
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/fehlerAdmin.jsp");
+			dispatcher.forward(request, response);
+		}
 
 	}
 
@@ -65,7 +65,7 @@ public class AngebotUpdateServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void persist(ProduktBean p, String name) throws ServletException {
+	private void update(ProduktBean p, String name) throws ServletException {
 
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con
@@ -77,6 +77,34 @@ public class AngebotUpdateServlet extends HttpServlet {
 			pstmt.executeUpdate();
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
+		}
+	}
+
+	private boolean check(String name, Integer nr) throws ServletException {
+
+		ProduktBean p = new ProduktBean();
+
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("SELECT artikelnr FROM " + name + " WHERE artikelnr = ?")) {
+			pstmt.setInt(1, nr);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					p.setArtikelnr(Integer.valueOf(rs.getInt("artikelnr")));
+
+				}
+			}
+
+		} catch (Exception ex) {
+			throw new ServletException(ex.getMessage());
+		}
+
+		if (p.getArtikelnr() == nr) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

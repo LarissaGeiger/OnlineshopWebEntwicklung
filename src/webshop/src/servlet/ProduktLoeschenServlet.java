@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import bean.ProduktBean;
 
 /**
  * Servlet implementation class PorduktLoeschenServlet
@@ -23,32 +26,27 @@ public class ProduktLoeschenServlet extends HttpServlet {
 	private DataSource ds;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ProduktLoeschenServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("name");
+		String name = request.getParameter("kategorieName");
 		Integer artikelnr = Integer.valueOf(request.getParameter("artikelnr"));
 
-		// DB-Zugriff
-		delete(name, artikelnr);
+		if (check(name, artikelnr)) {
+			delete(name, artikelnr);
+			request.setAttribute("produkt", name);
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/loeschenAdmin.jsp");
+			dispatcher.forward(request, response);
 
-		// Scope "Request"
-		request.setAttribute("produkt", name);
+		} else {
+			request.setAttribute("produkt", name);
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/fehlerAdmin.jsp");
+			dispatcher.forward(request, response);
+		}
 
-		// Weiterleiten an JSP
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminProdukt.html");
-		dispatcher.forward(request, response);
 	}
 
 	private void delete(String name, Integer artikelnr) throws ServletException {
@@ -72,4 +70,31 @@ public class ProduktLoeschenServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	private boolean check(String name, Integer nr) throws ServletException {
+
+		ProduktBean p = new ProduktBean();
+
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("SELECT artikelnr FROM " + name + " WHERE artikelnr = ?")) {
+			pstmt.setInt(1, nr);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					p.setArtikelnr(Integer.valueOf(rs.getInt("artikelnr")));
+
+				}
+			}
+
+		} catch (Exception ex) {
+			throw new ServletException(ex.getMessage());
+		}
+
+		if (p.getArtikelnr() == nr) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

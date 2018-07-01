@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -13,9 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-/**
- * Servlet implementation class KontaktformularLoeschenServlet
- */
+import bean.KontaktBean;
+
 @WebServlet("/KontaktformularLoeschenServlet")
 public class KontaktformularLoeschenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,24 +23,25 @@ public class KontaktformularLoeschenServlet extends HttpServlet {
 	@Resource(lookup = "jdbc/MyTHIPool")
 	private DataSource ds;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
+		if (check(id)) {
+			delete(id);
 
-		delete(id);
+			request.setAttribute("kontakt", id);
 
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/loeschenAdmin.jsp");
+			dispatcher.forward(request, response);
 
-		request.setAttribute("kontakt", id);
+		} else {
+			request.setAttribute("kontakt", id);
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/fehlerAdmin.jsp");
+			dispatcher.forward(request, response);
+		}
 
-
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminKontakt.html");
-		dispatcher.forward(request, response);
 	}
 
 	private void delete(Integer id) throws ServletException {
@@ -58,6 +59,33 @@ public class KontaktformularLoeschenServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+
+	private boolean check(Integer id) throws ServletException {
+
+		KontaktBean k = new KontaktBean();
+
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement("SELECT id FROM kontakt WHERE id = ?")) {
+			pstmt.setInt(1, id);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					k.setId(Integer.valueOf(rs.getInt("id")));
+
+				}
+			}
+
+		} catch (Exception ex) {
+			throw new ServletException(ex.getMessage());
+		}
+
+		if (k.getId() == id) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

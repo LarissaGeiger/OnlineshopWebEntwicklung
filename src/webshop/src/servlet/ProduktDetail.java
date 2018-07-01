@@ -103,14 +103,6 @@ public class ProduktDetail extends HttpServlet {
 						produkt.setArbeitsspeicher(rs.getInt("arbeitsspeicher"));
 						produkt.setBildID(rs.getInt("bildID"));
 						produkt.setPageName(rs.getString("pageName"));
-					} 
-					
-					
-					
-					//test 
-					else {
-						produkt.setArtikelnr(000);
-						
 					}
 
 				}

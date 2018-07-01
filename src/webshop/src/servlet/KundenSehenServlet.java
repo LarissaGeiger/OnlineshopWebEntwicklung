@@ -27,13 +27,6 @@ public class KundenSehenServlet extends HttpServlet {
 	@Resource(lookup = "jdbc/MyTHIPool")
 	private DataSource ds;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public KundenSehenServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -47,20 +40,11 @@ public class KundenSehenServlet extends HttpServlet {
 		String nachname = request.getParameter("nachname");
 
 		List<KundeBean> kunden = read(nachname);
-		
-		
-		//nochmal ¸berarbeiten
-		if (kunden.isEmpty()) {
-			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kundenFehler.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			// Scope "Request"
-			request.setAttribute("kunden", kunden);
 
-			// Weiterleiten an JSP
-			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kunden.jsp");
-			dispatcher.forward(request, response);
-		}
+		request.setAttribute("myKunde", kunden);
+
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/kunden.jsp");
+		dispatcher.forward(request, response);
 
 	}
 
@@ -68,37 +52,24 @@ public class KundenSehenServlet extends HttpServlet {
 		List<KundeBean> kunden = new ArrayList<KundeBean>();
 
 		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM customer WHERE nachname LIKE ?")) {
+				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM customer WHERE nachname = ?")) {
 
 			pstmt.setString(1, nachname);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				while (rs.next()) {
 					KundeBean kunde = new KundeBean();
-
-					Integer id = Integer.valueOf((rs.getInt("id")));
-					kunde.setId(id);
-					String vorname = rs.getString("vorname");
-					kunde.setVorname(vorname);
-					String n = rs.getString("nachname");
-					kunde.setNachname(n);
-					String email = rs.getString("email");
-					kunde.setEmail(email);
-					String telefonnummer = rs.getString("telefonnr");
-					kunde.setTelefonnr(telefonnummer);
-					String straﬂe = rs.getString("straﬂe");
-					kunde.setStraﬂe(straﬂe);
-					String gebdatum = rs.getString("gebdatum");
-					kunde.setGebdatum(gebdatum);
-					String password = rs.getString("passwort");
-					kunde.setPasswort(password);
-					Boolean admin = rs.getBoolean("admin");
-					kunde.setAdmin(admin);
-					String ort = rs.getString("ort");
-					kunde.setOrt(ort);
-					Integer plz = rs.getInt("plz");
-					kunde.setPlz(plz);
-					Integer hausnr = rs.getInt("hausnr");
-					kunde.setHausnr(hausnr);
+					kunde.setId(Integer.valueOf((rs.getInt("id"))));
+					kunde.setVorname(rs.getString("vorname"));
+					kunde.setNachname(rs.getString("nachname"));
+					kunde.setEmail(rs.getString("email"));
+					kunde.setTelefonnr(rs.getString("telefonnr"));
+					kunde.setStraﬂe(rs.getString("straﬂe"));
+					kunde.setGebdatum(rs.getString("gebdatum"));
+					kunde.setPasswort(rs.getString("passwort"));
+					kunde.setAdmin(Boolean.valueOf(rs.getBoolean("admin")));
+					kunde.setOrt(rs.getString("ort"));
+					kunde.setPlz(Integer.valueOf(rs.getInt("plz")));
+					kunde.setHausnr(Integer.valueOf(rs.getInt("hausnr")));
 					kunden.add(kunde);
 				}
 

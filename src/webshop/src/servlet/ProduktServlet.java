@@ -44,69 +44,169 @@ public class ProduktServlet extends HttpServlet {
 
 		ProduktBean produkt = new ProduktBean();
 		produkt.setArtikelnr(Integer.valueOf(request.getParameter("artikelnr")));
-		produkt.setAngebot(false);
-		produkt.setFarbe(request.getParameter("farbe"));
-		produkt.setMarke(request.getParameter("marke"));
-		produkt.setName(request.getParameter("name"));
-		produkt.setPreis(Double.valueOf(request.getParameter("preis")));
 		produkt.setPageName(request.getParameter("pageName"));
 
-		BilderBean bild = new BilderBean();
-		bild.setBez(request.getParameter("pageName"));
-		Part filepart = request.getPart("image");
-		bild.setImageFileName(filepart.getSubmittedFileName());
+		if (check(kategorieName, produkt.getArtikelnr()) && checkName(kategorieName, produkt.getPageName())) {
 
-		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); InputStream in = filepart.getInputStream()) {
-			int i = 0;
-			while ((i = in.read()) != -1) {
-				baos.write(i);
+			produkt.setAngebot(false);
+			produkt.setFarbe(request.getParameter("farbe"));
+			produkt.setMarke(request.getParameter("marke"));
+			produkt.setName(request.getParameter("name"));
+			produkt.setPreis(Double.valueOf(request.getParameter("preis")));
+			produkt.setPageName(request.getParameter("pageName"));
+
+			BilderBean bild = new BilderBean();
+			bild.setBez(request.getParameter("pageName"));
+			Part filepart = request.getPart("image");
+			bild.setImageFileName(filepart.getSubmittedFileName());
+
+			try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); InputStream in = filepart.getInputStream()) {
+				int i = 0;
+				while ((i = in.read()) != -1) {
+					baos.write(i);
+				}
+				bild.setFile(baos.toByteArray());
+				baos.flush();
+			} catch (IOException ex) {
+				throw new ServletException(ex.getMessage());
 			}
-			bild.setFile(baos.toByteArray());
-			baos.flush();
-		} catch (IOException ex) {
+
+			persist(bild);
+			produkt.setBildID(bild.getId());
+
+			read(produkt, kategorieName);
+
+			if (produkt.getKategorieID() == 1) {
+				produkt.setDisplaytech(request.getParameter("displaytech"));
+
+				if (request.getParameter("bildschirmdia").equals("")) {
+					produkt.setBildschirmdiagonale(0);
+				} else {
+					produkt.setBildschirmdiagonale(Double.valueOf(request.getParameter("bildschirmdia")));
+				}
+
+				persistFernseher(produkt);
+			}
+			if (produkt.getKategorieID() == 4) {
+				produkt.setModell(request.getParameter("modell"));
+
+				if (request.getParameter("displaygröße").equals("")) {
+					produkt.setDisplaygröße(0);
+				} else {
+					produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+				}
+
+				if (request.getParameter("sensorauflösung").equals("")) {
+					produkt.setSensorauflösung(0);
+					;
+				} else {
+					produkt.setSensorauflösung(Integer.valueOf(request.getParameter("sensorauflösung")));
+				}
+
+				persistKameras(produkt);
+			}
+			if (produkt.getKategorieID() == 3) {
+
+				if (request.getParameter("speicherplatz").equals("")) {
+					produkt.setSpeicherplatz(0);
+				} else {
+					produkt.setSpeicherplatz(Integer.valueOf(request.getParameter("speicherplatz")));
+				}
+
+				produkt.setBetriebssystem(request.getParameter("betriebssystem"));
+
+				if (request.getParameter("displaygröße").equals("")) {
+					produkt.setDisplaygröße(0);
+				} else {
+					produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+				}
+
+				persistSmartphones(produkt);
+			}
+			if (produkt.getKategorieID() == 2) {
+
+				if (request.getParameter("arbeitsspeicher").equals("")) {
+					produkt.setArbeitsspeicher(0);
+				} else {
+					produkt.setArbeitsspeicher(Integer.valueOf(request.getParameter("arbeitsspeicher")));
+				}
+
+				if (request.getParameter("displaygröße").equals("")) {
+					produkt.setDisplaygröße(0);
+				} else {
+					produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
+				}
+
+				produkt.setBetriebssystem(request.getParameter("betriebssystem"));
+
+				persistNotebooks(produkt);
+			}
+
+			request.setAttribute("produkt", produkt);
+
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/uploadAdmin.jsp");
+			dispatcher.forward(request, response);
+
+		} else {
+			request.setAttribute("produkt", produkt.getArtikelnr());
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/fehlerAdmin.jsp");
+			dispatcher.forward(request, response);
+		}
+
+	}
+
+	private boolean check(String name, Integer nr) throws ServletException {
+
+		ProduktBean p = new ProduktBean();
+
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("SELECT artikelnr FROM " + name + " WHERE artikelnr = ?")) {
+			pstmt.setInt(1, nr);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					p.setArtikelnr(Integer.valueOf(rs.getInt("artikelnr")));
+
+				}
+			}
+
+		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
 
-		persist(bild);
-		produkt.setBildID(bild.getId());
-
-		read(produkt, kategorieName);
-
-		
-		if (produkt.getKategorieID() == 1) {
-			produkt.setDisplaytech(request.getParameter("displaytech"));
-			produkt.setBildschirmdiagonale(Double.valueOf(request.getParameter("bildschirmdia")));
-
-			persistFernseher(produkt);
+		if (p.getArtikelnr() != nr) {
+			return true;
+		} else {
+			return false;
 		}
-		if (produkt.getKategorieID() == 4) {
-			produkt.setModell(request.getParameter("modell"));
-			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-			produkt.setSensorauflösung(Integer.valueOf(request.getParameter("sensorauflösung")));
+	}
 
-			persistKameras(produkt);
+	private boolean checkName(String kategorieName, String page) throws ServletException {
+
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("SELECT pageName FROM " + kategorieName + " WHERE pageName = ?")) {
+			pstmt.setString(1, page);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				if (rs.next()) {
+					return false;
+				} else {
+					return true;
+				}
+
+			} catch (Exception e) {
+				throw new ServletException(e.getMessage());
+			}
 		}
-		if (produkt.getKategorieID() == 3) {
-			produkt.setSpeicherplatz(Integer.valueOf(request.getParameter("speicherplatz")));
-			produkt.setBetriebssystem(request.getParameter("betriebssystem"));
-			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
 
-			persistSmartphones(produkt);
+		catch (Exception e) {
+			throw new ServletException(e.getMessage());
 		}
-		if (produkt.getKategorieID() == 2) {
-			produkt.setArbeitsspeicher(Integer.valueOf(request.getParameter("arbeitsspeicher")));
-			produkt.setDisplaygröße(Double.valueOf(request.getParameter("displaygröße")));
-			produkt.setBetriebssystem(request.getParameter("betriebssystem"));
 
-			persistNotebooks(produkt);
-		}
-		request.setAttribute("produkt", produkt);
-
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("html/admin/adminProdukte.html");
-
-		// final RequestDispatcher dispatcher =
-		// request.getRequestDispatcher("jsp/produkt.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	private void persist(BilderBean b) throws ServletException {
@@ -261,7 +361,7 @@ public class ProduktServlet extends HttpServlet {
 			pstmt.setInt(10, produkt.getKategorieID());
 			pstmt.setDouble(11, produkt.getDisplaygröße());
 			pstmt.setString(12, produkt.getPageName());
-			
+
 			pstmt.executeUpdate();
 
 			try (ResultSet rs = pstmt.getGeneratedKeys()) {

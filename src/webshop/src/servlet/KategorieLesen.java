@@ -29,33 +29,24 @@ public class KategorieLesen extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		//String kategorieName = request.getParameter("kategorieName");
 
-		// DB-Zugriff
 		List<KategorieBean> kategorie = new ArrayList<KategorieBean>();
 		kategorie = read();
-		
+
 		// Scope "Request"
+
 		request.setAttribute("kategorie", kategorie);
 
-		// Weiterleiten an JSP
-		//final RequestDispatcher dispatcher = request.getRequestDispatcher("kategorie.jsp");
-		//dispatcher.forward(request, response);
-
-		request.getRequestDispatcher("header.jsp").include(request, response);
+		request.getRequestDispatcher("kategorie.jsp").include(request, response);
 	}
 
 	private List<KategorieBean> read() throws ServletException {
-		// TODO Auto-generated method stub
-		// kategorieName = (kategorieName == null || kategorieName == "") ? "%" : "%" +
-		// kategorieName + "%";
+
 		List<KategorieBean> kategorie = new ArrayList<KategorieBean>();
 
-		// DB-Zugriff
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM kategorie ")) {
 
-			// pstmt.setString(1, "");
 			try (ResultSet rs = pstmt.executeQuery()) {
 
 				while (rs.next()) {
@@ -72,6 +63,5 @@ public class KategorieLesen extends HttpServlet {
 		}
 		return kategorie;
 	}
-	
 
 }
