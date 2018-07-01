@@ -1,9 +1,10 @@
-		<%@include file="unterkategorieHeader.jspf"%>
+
+<%@include file="unterkategorieHeader.jspf"%>
 
 
 <div>
-<jsp:include page="../KategorieProdukte" />
+	<jsp:include page="../KategorieProdukte" />
 
 </div>
 
-		<%@include file="unterkategorieFooter.jspf"%>
+<%@include file="unterkategorieFooter.jspf"%>

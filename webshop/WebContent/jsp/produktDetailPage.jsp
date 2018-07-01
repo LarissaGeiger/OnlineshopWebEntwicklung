@@ -15,8 +15,8 @@
 	<header>
 
 		<h1>${titel}</h1>
-		<p style="text-align: center">
-			<input type="text" name="suchfeld" size="70" maxlength="50"
+		<p>
+			<input type="text" name="suchfeld" maxlength="50"
 				placeholder="Geben Sie hier Ihren Suchbegriff ein">
 		</p>
 		<nav>
@@ -43,19 +43,23 @@
 		<a href="../Titel?titel=${titel}">Zurück zur Kategorie ${titel}</a><br>
 
 	</aside>
-<form action ="warenkorb.jsp" method ="get"> 
+
 
 	<article>
 
 		<jsp:include page="../ProduktDetail" />
 
-		<input type="button"  formaction="warenkorb.jsp" name="Warenkorb" value="In den Warenkorb">
-		<a href="../Warenkorbservlet?titel=${titel}&page=${produktDetail.pageName}&name=${produktDetail.name}&preis=${produktDetail.preis}"> In den warenkorb</a>
-
+		<!-- stimmt die Position? -->
+		<form action="warenkorb.jsp" method="get">
+			<input type="button" formaction="warenkorb.jsp" name="Warenkorb"
+				value="In den Warenkorb"> <a
+				href="../Warenkorbservlet?titel=${titel}&page=${produktDetail.pageName}&name=${produktDetail.name}&preis=${produktDetail.preis}">
+				In den Warenkorb</a>
+		</form>
 	</article>
 
 	</main>
-</form>
+
 
 
 	<%@include file="unterkategorieFooter.jspf"%>

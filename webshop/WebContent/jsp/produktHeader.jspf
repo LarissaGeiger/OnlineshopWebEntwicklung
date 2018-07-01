@@ -8,7 +8,7 @@
 
 <title>${titel}</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/fernseher.css">
+<link rel="stylesheet" href="../css/fernseher.css">
 </head>
 
 <body>
@@ -25,8 +25,11 @@
 			<div class="dropdown">
 				<button class="dropdown">Navigation</button>
 				<div class="dropdown-content">
-					<a href="index.jsp">Startseite</a>
-					<jsp:include page="../KategorieLesen" />
+					<a href="../index.jsp">Startseite</a>
+
+					<%-- <!-- Links funktionieren noch nicht, ../ fehlt -->
+
+					<jsp:include page="../KategorieLesen" /> --%>
 				</div>
 			</div>
 			<!-- Ende  -->
