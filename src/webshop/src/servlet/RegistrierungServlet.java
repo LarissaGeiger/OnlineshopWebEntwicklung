@@ -41,7 +41,7 @@ public class RegistrierungServlet extends HttpServlet {
 			kunde.setNachname(request.getParameter("nachname"));
 			kunde.setPasswort(request.getParameter("passwort"));
 			kunde.setTelefonnr(request.getParameter("telefonnummer"));
-			kunde.setStra√üe(request.getParameter("stra√üe"));
+			kunde.setStraﬂe(request.getParameter("straﬂe"));
 			kunde.setGebdatum(request.getParameter("geburtsdatum"));
 			kunde.setOrt(request.getParameter("ort"));
 
@@ -61,7 +61,7 @@ public class RegistrierungServlet extends HttpServlet {
 
 			request.setAttribute("myKunde", kunde);
 
-			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/registrierung.jsp");
+			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/eingabe.jsp");
 			dispatcher.forward(request, response);
 
 		} else {
@@ -77,14 +77,14 @@ public class RegistrierungServlet extends HttpServlet {
 		String[] generatedKeys = new String[] { "id" };
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
-						"INSERT INTO customer (vorname,nachname,email, stra√üe, gebdatum,passwort, ort, admin, hausnr, plz, telefonnr) "
+						"INSERT INTO customer (vorname,nachname,email, straﬂe, gebdatum,passwort, ort, admin, hausnr, plz, telefonnr) "
 								+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
 						generatedKeys)) {
 
 			pstmt.setString(1, kunde.getVorname());
 			pstmt.setString(2, kunde.getNachname());
 			pstmt.setString(3, kunde.getEmail());
-			pstmt.setString(4, kunde.getStra√üe());
+			pstmt.setString(4, kunde.getStraﬂe());
 			pstmt.setString(5, kunde.getGebdatum());
 			pstmt.setString(6, kunde.getPasswort());
 			pstmt.setString(7, kunde.getOrt());

@@ -55,6 +55,8 @@ public class ProduktServlet extends HttpServlet {
 			produkt.setPreis(Double.valueOf(request.getParameter("preis")));
 			produkt.setPageName(request.getParameter("pageName"));
 
+			// braucht passende Fehlermeldung beim Hochladen eines zu groﬂen Bildes
+			
 			BilderBean bild = new BilderBean();
 			bild.setBez(request.getParameter("pageName"));
 			Part filepart = request.getPart("image");
@@ -68,7 +70,9 @@ public class ProduktServlet extends HttpServlet {
 				bild.setFile(baos.toByteArray());
 				baos.flush();
 			} catch (IOException ex) {
+
 				throw new ServletException(ex.getMessage());
+
 			}
 
 			persist(bild);
@@ -227,6 +231,7 @@ public class ProduktServlet extends HttpServlet {
 
 			}
 		} catch (Exception ex) {
+
 			throw new ServletException(ex.getMessage());
 		}
 
