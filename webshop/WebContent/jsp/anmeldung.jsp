@@ -5,10 +5,10 @@
 <html>
 <head>
 <title>Anmeldung erfolgreich</title>
-
+<link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-	<h1>Anmeldung erfolgreich</h1>
+	<h1 class="eingabe">Anmeldung erfolgreich</h1>
 
 
 

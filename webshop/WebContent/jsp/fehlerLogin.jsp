@@ -6,28 +6,34 @@
 <html>
 <head>
 <title>Loginfehler</title>
-<link rel="stylesheet" href="css/startseite.css">
+<link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
 
 	<c:if test="${empty myKunde}">
-		<h1>Eingabefehler</h1>
+		<h1 class="fehler">Eingabefehler</h1>
 
 
-		<p>Ihre eingegebene Daten sind nicht korrekt!</p>
-		<p>Prüfen Sie ihre Emailadresse und Passwort</p>
+		<p>Ihre eingegebene Anmeldedaten sind nicht korrekt!</p>
+		<p>Checken Sie ihre Emailadresse und Passwort</p>
 		<p>
 			<a href="html/anmeldung.html">Erneut versuchen</a>
+		</p>
+		<p>
+			<a href="index.jsp">Zur Startseite</a>
 		</p>
 	</c:if>
 
 	<c:if test="${not empty myKunde}">
-		<h1>Eingabefehler</h1>
+		<h1 class="fehler">Eingabefehler</h1>
 
 
 		<p>Ihre eingegebene Emailadresse existiert bereits!</p>
 		<p>
 			<a href="html/registrierung.html">Erneut registrieren</a>
+		</p>
+		<p>
+			<a href="index.jsp">Zur Startseite</a>
 		</p>
 
 	</c:if>
