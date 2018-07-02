@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -51,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String passwort = request.getParameter("passwort");
 
-		if (checkUser(email, passwort) && passwort != "admin" && email != "admin@thi.de") {
+		if (checkUser(email, passwort) && checkAdmin(email, passwort) == false) {
 
 			HttpSession session = request.getSession();
 			KundeBean kunde = new KundeBean();
@@ -62,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 			final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/anmeldung.jsp");
 			dispatcher.forward(request, response);
 
-		} else if (passwort.equals("admin") && email.equals("admin@thi.de")) {
+		} else if (checkUser(email, passwort) && checkAdmin(email, passwort) == true) {
 			RequestDispatcher rs = request.getRequestDispatcher("jsp/anmeldung.jsp");
 			rs.forward(request, response);
 
@@ -95,6 +97,31 @@ public class LoginServlet extends HttpServlet {
 			throw new ServletException(e.getMessage());
 		}
 
+	}
+
+	public boolean checkAdmin(String email, String passwort) throws ServletException {
+		KundeBean kunde = new KundeBean();
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con
+						.prepareStatement("SELECT admin FROM customer WHERE email = ? AND passwort = ?")) {
+
+			pstmt.setString(1, email);
+			pstmt.setString(2, passwort);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				if (rs.next()) {
+					kunde.setAdmin(Boolean.valueOf(rs.getBoolean("admin")));
+				}
+			}
+
+		} catch (Exception e) {
+			throw new ServletException(e.getMessage());
+		}
+		if (kunde.isAdmin()) {
+			return true;
+		}
+		return false;
 	}
 
 }
