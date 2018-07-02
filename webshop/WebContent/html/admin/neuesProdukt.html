@@ -9,11 +9,6 @@
 </head>
 <body>
 
-	<!-- 	
-	preis soll mit . geteilt sein und max 2 Nachkommastellen (auch bei Zoll zeug mit einer nachkommastelle)
-	alle Strings sollen keine Zahlen sein
-	 -->
-
 	<form method="post" enctype="multipart/form-data" id="produktForm"
 		action="../../ProduktServlet">
 		<fieldset>
@@ -42,7 +37,7 @@
 			</div>
 			<div>
 				<label>Preis (in €):</label> <input name="preis" id="preis"
-					type="number" min="0" required><span></span>
+					step="0.01" type="number" min="0" required><span></span>
 			</div>
 
 			<div>
@@ -71,7 +66,7 @@
 			<div>
 				<label>Bildschirmdiagonale (in Zoll):</label> <input
 					name="bildschirmdia" id="bildschirmdia" type="number" min="0"
-					value="">
+					step="0.1" value="">
 			</div>
 
 			<div>
@@ -92,13 +87,14 @@
 
 			<div>
 				<label>Displaygröße (in Zoll):</label> <input name="displaygröße"
-					value="" id="displaygröße" type="number" min="0" disabled>
+					step="0.1" value="" id="displaygröße" type="number" min="0"
+					disabled>
 			</div>
 
 			<div>
 				<label>Sensorauflösung (in Pixel):</label> <input
 					name="sensorauflösung" id="sensorauflösung" type="number" min="0"
-					value="" disabled>
+					step="0.1" value="" disabled>
 			</div>
 
 			<div>
@@ -107,7 +103,7 @@
 			</div>
 
 			<div>
-				<button type="submit" id="button">Hinzufügen</button>
+				<button type="submit" id="button" onclick="checkForm()">Hinzufügen</button>
 			</div>
 		</fieldset>
 	</form>
