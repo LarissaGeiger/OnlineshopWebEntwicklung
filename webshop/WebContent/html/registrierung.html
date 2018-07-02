@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Registrierung</title>
 <link rel="stylesheet" href="../css/registrierung.css">
+<script src="../js/registrierung.js"></script>
 
 </head>
 <body>
@@ -29,8 +30,11 @@
 					placeholder="Bitte geben Sie hier ihre E-Mail Adresse ein" required><span></span>
 			</div>
 			<div>
+				<!-- Pattern für Passwort:	https://www.w3schools.com/tags/att_input_pattern.asp -->
+
 				<label>Passwort:</label> <input name="passwort" type="password"
-					maxlength="50" id="passwort"
+					maxlength="50" id="passwort" pattern=".{8,}"
+					title="8 oder mehr Zeichen erlaubt"
 					placeholder="Bitte geben Sie hier ihr Passwort ein" required><span></span>
 			</div>
 			<div>
@@ -71,7 +75,7 @@
 
 			<p>(*) = Eingabe erforderlich</p>
 			<div>
-				<button type="submit" id="button">Registrieren</button>
+				<button type="submit" id="registrieren" onclick="checkForm()">Registrieren</button>
 			</div>
 		</fieldset>
 	</form>

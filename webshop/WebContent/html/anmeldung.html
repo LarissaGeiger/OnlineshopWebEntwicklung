@@ -5,7 +5,6 @@
 <title>Anmeldung</title>
 <link rel="stylesheet" href="../css/registrierung.css">
 
-
 </head>
 <body>
 
@@ -15,12 +14,13 @@
 			<legend>Anmeldedaten</legend>
 			<div>
 				<label>Email:</label><input name="email" type="email" maxlength="50"
+					id="email"
 					placeholder="Bitte geben Sie hier ihre E-Mail Adresse ein" required><span></span>
 			</div>
 			<div>
 				<label>Passwort:</label> <input name="passwort" type="password"
-					maxlength="20" placeholder="Bitte geben Sie hier ihr Passwort ein"
-					required><span></span>
+					id="passwort" maxlength="20"
+					placeholder="Bitte geben Sie hier ihr Passwort ein" required><span></span>
 
 			</div>
 
@@ -29,7 +29,7 @@
 					href="registrierung.html">hier</a>
 			</p>
 
-			<button type="submit" id="anmelden">Anmelden</button>
+			<button type="submit" id="anmelden"">Anmelden</button>
 		</fieldset>
 	</form>
 
